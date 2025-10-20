@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ./pkgs.nix
     ./wifi.nix
+    ./programs/1password.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -25,6 +26,14 @@
   hardware.amdgpu.opencl.enable = true;
 
   nixpkgs.config.allowUnfree = true;
+
+  security.polkit.enable = true;
+
+  # Allow all users in the wheel group to edit the nixos configuration
+  systemd.tmpfiles.rules = [
+    "d /etc/nixos 2775 root wheel -"
+    "A+ /etc/nixos - - - - d:u::rwx,d:g::rwx,d:o::rx"
+  ];
 
   users = {
     defaultUserShell = pkgs.zsh;

@@ -15,12 +15,15 @@
   };
 
   home.packages = with pkgs; [
-    kitty
-    xfce.thunar
-    chromium
-    _1password-gui
-    nerd-fonts.hack
-    nerd-fonts.mononoki
+    kitty # Terminal
+    xfce.thunar # File Manager
+    chromium # Internet Browser
+    # _1password-gui # Jetzt system-weit über programs/1password.nix konfiguriert
+    hyprpolkitagent # Authentication Agent
+    nerd-fonts.hack # Nerd Font: Hack
+    nerd-fonts.mononoki # Nerd Font: Mononoki
+    code-cursor-fhs # Cursor AI
+    nodejs_24 # Node.js
   ];
 
   programs = {
@@ -94,6 +97,12 @@
   };
 
   fonts.fontconfig.enable = true;
+  home.pointerCursor = {
+    gtk.enable = true;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+    package = pkgs.bibata-cursors;
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -101,7 +110,7 @@
       "$terminal" = "kitty";
       "$fileManager" = "thunar";
       "$launcher" = "vicinae toggle"; # NOT INSTALLED
-      "$browser" = "chromium";
+      "$browser" = "chromium --disable-features=WaylandWpColorManagerV1";
       "$pass" = "1password";
       "$music" = "youtube-music"; # NOT INSTALLED
       "$wiki" = "gtk-launch slite"; # NOT INSTALLED
