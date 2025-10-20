@@ -2,242 +2,177 @@
 
 {
   # ============================================================================
-  # 1PASSWORD CONFIGURATION
+  # 1PASSWORD ALL-IN-ONE CONFIGURATION
   # ============================================================================
-  # Diese Konfiguration implementiert alle Best Practices für 1Password auf NixOS
-  # Basierend auf umfangreicher Community-Recherche und offizieller Dokumentation
+  # Ein einziges Modul für System-Level UND User-Level Konfiguration
+  # Import in configuration.nix genügt - alles wird automatisch eingerichtet
   # ============================================================================
 
   # ----------------------------------------------------------------------------
-  # UNFREE PACKAGES - KRITISCH für 1Password
+  # SYSTEM-LEVEL CONFIGURATION
   # ----------------------------------------------------------------------------
-  # 1Password ist proprietäre Software und muss explizit erlaubt werden
   
-  # Option A: Spezifisch nur 1Password (empfohlen für mehr Kontrolle)
-  # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  #   "1password"
-  #   "1password-gui"
-  #   "1password-cli"
-  # ];
-
-  # Option B: Global allowUnfree = true in configuration.nix (AKTIV)
-  # Da in configuration.nix bereits nixpkgs.config.allowUnfree = true gesetzt ist,
-  # ist keine zusätzliche Konfiguration hier nötig.
-
-  # ----------------------------------------------------------------------------
-  # SYSTEM-LEVEL 1PASSWORD CONFIGURATION
-  # ----------------------------------------------------------------------------
-  # Diese Konfiguration nutzt die offiziellen NixOS Module für 1Password
-  # Vorteile:
-  # - Automatische PolKit-Integration
-  # - Korrekte Desktop-Integration
-  # - Bessere System-Authentication
-  # - Saubere Browser-Integration für Firefox, Chrome, Brave
-  
+  # 1Password Programme
   programs._1password = {
     enable = true;
-    # package = pkgs._1password;  # Optional: spezifische Version
   };
 
   programs._1password-gui = {
     enable = true;
-    # package = pkgs._1password-gui;  # Optional: spezifische Version
-    
-    # KRITISCH: polkitPolicyOwners muss gesetzt sein!
-    # Ohne diese Einstellung funktionieren folgende Features NICHT:
-    # - CLI Integration mit Desktop App
-    # - System Authentication (Fingerprint, etc.)
-    # - Browser Extension Unlock via Desktop App
-    # - SSH Agent Integration
+    # KRITISCH: Ermöglicht CLI Integration, System Auth, Browser Extension
     polkitPolicyOwners = [ "metehan.yurtseven" ];
   };
 
-  # ----------------------------------------------------------------------------
-  # POLKIT CONFIGURATION
-  # ----------------------------------------------------------------------------
-  # PolKit ist essentiell für:
-  # - System-level Authentication
-  # - Privileged Operations
-  # - Desktop Integration unter Wayland/X11
+  # PolKit für System-Authentication
   security.polkit.enable = true;
 
-  # ----------------------------------------------------------------------------
-  # BROWSER INTEGRATION
-  # ----------------------------------------------------------------------------
-  # 1Password Desktop App kann Browser Extensions automatisch entsperren
-  # Dies funktioniert automatisch für:
-  # - Firefox
-  # - Chrome/Chromium
-  # - Brave
-  # 
-  # WICHTIG: Funktioniert NUR mit NixOS-installierten Browsern!
-  # Flatpak-Browser werden NICHT unterstützt.
-  #
-  # Für andere Chromium-basierte Browser (z.B. Vivaldi):
-  # environment.etc."1password/custom_allowed_browsers" = {
-  #   text = ''
-  #     vivaldi-bin
-  #   '';
-  # };
-
-  # ----------------------------------------------------------------------------
-  # SSH AGENT CONFIGURATION (System-Level)
-  # ----------------------------------------------------------------------------
-  # 1Password kann als SSH Agent fungieren und SSH Keys verwalten
-  # Dies wird pro-User in home-manager konfiguriert (siehe unten)
-  # Hier setzen wir nur globale Voraussetzungen
+  # GNOME Keyring für 2FA Token Persistence (funktioniert standalone)
+  services.gnome.gnome-keyring.enable = true;
   
-  # Keine zusätzliche System-Konfiguration nötig für SSH Agent
-  # Die Socket-Konfiguration erfolgt im Home Manager
+  # PAM Integration für automatisches Keyring-Unlock beim Login
+  security.pam.services.login.enableGnomeKeyring = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;  # Für Display Manager
+
+  # XDG Portal für bessere Wayland/Hyprland Integration
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    # Hyprland Portal als Standard für alle Interfaces
+    config.common.default = [ "hyprland" ];
+  };
 
   # ----------------------------------------------------------------------------
-  # KEYRING SUPPORT
+  # USER-LEVEL CONFIGURATION (via Home Manager)
   # ----------------------------------------------------------------------------
-  # 1Password benötigt einen Keyring-Service für:
-  # - 2FA Token Speicherung
-  # - Session Persistence
-  # - Sichere Credential Storage
-  #
-  # Wähle einen Keyring-Provider basierend auf deiner Desktop-Umgebung:
-
-  # Option A: GNOME Keyring (für GNOME, oder als standalone)
-  # services.gnome.gnome-keyring.enable = true;
-
-  # Option B: KDE Wallet (für KDE Plasma)
-  # Wird automatisch aktiviert wenn plasma6.enable = true ist
-  # services.desktopManager.plasma6.enable = true;
-
-  # Option C: Für minimale Setups ohne DE (wie Hyprland)
-  # 1Password kann auch ohne Keyring arbeiten, aber 2FA Token
-  # werden dann nur für die aktuelle Session gespeichert
-
-  # ----------------------------------------------------------------------------
-  # WAYLAND/HYPRLAND SPECIFIC CONFIGURATION
-  # ----------------------------------------------------------------------------
-  # Bei Wayland (besonders Hyprland) können Authentifizierungs-Prompts
-  # manchmal nicht erscheinen. Fixes:
+  # Automatische Konfiguration für den Haupt-User
   
-  # 1. XDG Desktop Portal (bereits in deiner Hyprland-Config empfohlen)
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-  # };
+  home-manager.users."metehan.yurtseven" = {
+    # GNOME Keyring (User-Level)
+    services.gnome-keyring = {
+      enable = true;
+      components = [ "secrets" ];
+    };
 
-  # 2. Alternative: X11 Fallback für 1Password
-  # Dies wird in der Home Manager Konfiguration gesetzt (exec-once)
+    # gcr für SystemPrompter
+    home.packages = with pkgs; [
+      gcr
+    ];
 
-  # ----------------------------------------------------------------------------
-  # ENVIRONMENT VARIABLES
-  # ----------------------------------------------------------------------------
-  # Keine speziellen System-Level Environment Variables nötig
-  # SSH_AUTH_SOCK wird pro-User in Home Manager gesetzt
+    # SSH Agent Configuration
+    programs.ssh = {
+      enable = true;
+      # Keine automatischen Defaults - wir setzen alles explizit
+      enableDefaultConfig = false;
+      
+      # Explizite Konfiguration für alle Hosts
+      matchBlocks."*" = {
+        # 1Password SSH Agent
+        identityAgent = "~/.1password/agent.sock";
+        
+        # Standard SSH Defaults (manuell gesetzt für Zukunftssicherheit)
+        addKeysToAgent = "yes";
+        compression = true;
+        serverAliveInterval = 60;
+        serverAliveCountMax = 10;
+        extraOptions = {
+          HashKnownHosts = "yes";
+        };
+      };
+    };
 
-  # ----------------------------------------------------------------------------
-  # ADDITIONAL PACKAGES (Optional)
-  # ----------------------------------------------------------------------------
-  # Diese Pakete können hilfreich sein:
+    # SSH_AUTH_SOCK Environment Variable
+    home.sessionVariables = {
+      SSH_AUTH_SOCK = "\${config.home.homeDirectory}/.1password/agent.sock";
+    };
+
+    # Git SSH Signing
+    programs.git = {
+      signing = {
+        # TODO: Ersetze mit deinem Public Key aus 1Password!
+        # Format: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAA... comment"
+        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAplaceholder 1password-key";
+        signByDefault = false;  # Auf true setzen wenn Key eingetragen
+      };
+      settings = {
+        gpg.format = "ssh";
+        gpg.ssh.program = "\${pkgs._1password-gui}/bin/op-ssh-sign";
+      };
+    };
+
+    # ZSH Shell Plugins
+    programs.zsh.initContent = ''
+      # 1Password Shell Plugins initialisieren
+      # Dies ermöglicht automatische Credential-Injection für CLI Tools
+      if command -v op &> /dev/null; then
+        eval "$(op plugin init zsh)"
+      fi
+    '';
+  };
+
+  # ============================================================================
+  # SHELL PLUGINS (Manuelle Installation)
+  # ============================================================================
+  # Installiert CLI Tools mit 1Password Shell Plugin Support
+  # Die Initialisierung erfolgt in der User-Config oben via zsh.initExtra
+  
   environment.systemPackages = with pkgs; [
-    # 1password-cli wird automatisch durch programs._1password installiert
-    # aber kann auch hier explizit gelistet werden wenn gewünscht
+    _1password-cli  # 1Password CLI (für Shell Plugins benötigt)
+    gh              # GitHub CLI
+    awscli2         # AWS CLI
+    # Weitere Tools die Shell Plugins unterstützen:
+    # terraform     # Terraform mit 1Password Secrets
+    # docker        # Docker mit 1Password Registry Auth
+    # kubectl       # Kubernetes mit 1Password Configs
+    # ansible       # Ansible mit 1Password Vault
   ];
+  # ============================================================================
 
   # ============================================================================
-  # HOME MANAGER CONFIGURATION TEMPLATE
-  # ============================================================================
-  # Die folgende Konfiguration sollte in home.nix oder einer separaten
-  # 1password Home Manager Datei platziert werden:
-  #
-  # { config, pkgs, ... }:
-  # {
-  #   # -------------------------------------------------------------------------
-  #   # SHELL INTEGRATION
-  #   # -------------------------------------------------------------------------
-  #   programs.zsh = {
-  #     # Source 1Password Shell Plugins (falls installiert via Flake)
-  #     initExtra = ''
-  #       # 1Password Shell Plugins werden automatisch geladen wenn via Flake installiert
-  #     '';
-  #   };
-  #
-  #   # -------------------------------------------------------------------------
-  #   # SSH CONFIGURATION
-  #   # -------------------------------------------------------------------------
-  #   programs.ssh = {
-  #     enable = true;
-  #     extraConfig = ''
-  #       # 1Password als SSH Agent nutzen
-  #       Host *
-  #         IdentityAgent ~/.1password/agent.sock
-  #     '';
-  #   };
-  #
-  #   # SSH_AUTH_SOCK Environment Variable
-  #   home.sessionVariables = {
-  #     SSH_AUTH_SOCK = "${config.home.homeDirectory}/.1password/agent.sock";
-  #   };
-  #
-  #   # -------------------------------------------------------------------------
-  #   # GIT SSH SIGNING (Optional aber empfohlen)
-  #   # -------------------------------------------------------------------------
-  #   programs.git = {
-  #     signing = {
-  #       key = "ssh-ed25519 AAAA...";  # Dein Public Key aus 1Password
-  #       signByDefault = true;
-  #     };
-  #     extraConfig = {
-  #       gpg.format = "ssh";
-  #       gpg.ssh.program = "${pkgs._1password-gui}/bin/op-ssh-sign";
-  #     };
-  #   };
-  #
-  #   # -------------------------------------------------------------------------
-  #   # HYPRLAND INTEGRATION (Falls verwendet)
-  #   # -------------------------------------------------------------------------
-  #   wayland.windowManager.hyprland = {
-  #     settings = {
-  #       exec-once = [
-  #         # Option A: Standard Start
-  #         "1password --silent &"
-  #         
-  #         # Option B: Mit X11 Fallback (falls Prompts nicht erscheinen)
-  #         # "1password --ozone-platform-hint=x11 --silent &"
-  #       ];
-  #     };
-  #   };
-  # }
-
-  # ============================================================================
-  # TROUBLESHOOTING TIPPS
+  # SETUP ANLEITUNG
   # ============================================================================
   # 
-  # Problem: CLI Integration funktioniert nicht
-  # Lösung:
-  # 1. Prüfe dass polkitPolicyOwners korrekt gesetzt ist
-  # 2. In 1Password App: Settings → Developer → "Integrate with 1Password CLI" aktivieren
-  # 3. Check Socket: ls -la ~/.1password/ und ~/.config/1Password/
-  #
-  # Problem: Browser Extension verbindet nicht
-  # Lösung:
-  # 1. Stelle sicher Browser ist via NixOS installiert (nicht Flatpak!)
-  # 2. Für Custom Browsers: custom_allowed_browsers konfigurieren
-  # 3. 1Password App neustarten
-  #
-  # Problem: Prompts erscheinen nicht unter Hyprland
-  # Lösung:
-  # 1. Nutze --ozone-platform-hint=x11 beim Start
-  # 2. Prüfe dass hyprpolkitagent läuft
-  # 3. XDG Portal aktivieren
-  #
-  # Problem: 2FA Token wird nicht gespeichert
-  # Lösung:
-  # 1. services.gnome.gnome-keyring.enable = true; aktivieren
-  # 2. ODER: KDE Wallet nutzen wenn KDE Desktop
-  #
-  # Debugging:
-  # - Logs: journalctl --user -u 1password.service -f
-  # - Verbose: 1password --verbose
-  # - CLI Test: op account list
-  # - Socket Check: ls -la ~/.1password/agent.sock
+  # Nach dem Rebuild:
+  # 
+  # 1. SSH Agent aktivieren:
+  #    - 1Password öffnen → Settings → Developer
+  #    - "Use the SSH agent" aktivieren
+  #    - SSH Key erstellen oder importieren
+  #    - Testen: ssh-add -l
+  # 
+  # 2. CLI Integration aktivieren:
+  #    - 1Password öffnen → Settings → Developer
+  #    - "Integrate with 1Password CLI" aktivieren
+  #    - Testen: op account list
+  # 
+  # 3. Git Signing aktivieren (optional):
+  #    - SSH Key in 1Password erstellen
+  #    - Public Key kopieren
+  #    - Oben bei signing.key eintragen
+  #    - signByDefault = true setzen
+  #    - Rebuild und testen: git commit --allow-empty -m "test"
+  # 
+  # 4. Shell Plugins nutzen:
+  #    - AWS/GitHub Credentials in 1Password speichern
+  #    - aws/gh Commands nutzen → 1Password Prompt erscheint
+  # 
+  # ============================================================================
+  # TROUBLESHOOTING
+  # ============================================================================
+  # 
+  # CLI funktioniert nicht:
+  # - Check: op account list
+  # - Lösung: Settings → Developer → "Integrate with 1Password CLI"
+  # 
+  # Prompts erscheinen nicht:
+  # - Hyprland nutzt X11 Fallback (bereits in home.nix konfiguriert)
+  # - Check: ps aux | grep polkit
+  # 
+  # Browser Extension verbindet nicht:
+  # - Nur NixOS-Browser funktionieren (nicht Flatpak!)
+  # - 1Password App neustarten
+  # 
+  # 2FA Token nicht persistent:
+  # - Check: systemctl --user status gnome-keyring
+  # - Bei Problemen: GNOME Keyring neustarten
   # ============================================================================
 }
-

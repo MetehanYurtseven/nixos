@@ -18,7 +18,6 @@
     kitty # Terminal
     xfce.thunar # File Manager
     chromium # Internet Browser
-    # _1password-gui # Jetzt system-weit über programs/1password.nix konfiguriert
     hyprpolkitagent # Authentication Agent
     nerd-fonts.hack # Nerd Font: Hack
     nerd-fonts.mononoki # Nerd Font: Mononoki
@@ -177,7 +176,7 @@
 
       # Autostart
       exec-once = [
-      	"1password --silent &" # Password Manager
+      	"1password --ozone-platform-hint=x11 --silent &" # Password Manager (X11 mode für bessere Prompt-Darstellung)
         # "waybar" # Menu Bar # TODO
         # "uxplay" # AirPlay # TODO
         # "solaar -w hide -b symbolic" # Logitech Unifying Receiver # TODO
