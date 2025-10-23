@@ -40,10 +40,17 @@
         local hash_after=$(sha256sum "$file" | awk '{print $1}')
         
         if [ "$hash_before" != "$hash_after" ]; then
-          echo "📦 Changes detected, applying configuration..."
+          echo "Changes detected..."
+          
+          echo "Committing to git..."
+          cd /etc/nixos
+          git add pkgs 2>/dev/null
+          git commit -q -m "packages updated" 2>/dev/null || echo "⚠️  Git commit failed"
+          
+          echo "Applying configuration..."
           sudo nixos-rebuild switch
         else
-          echo "✓ No changes detected."
+          echo "No changes detected."
         fi
       }
     '';
