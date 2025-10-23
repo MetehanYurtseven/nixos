@@ -23,6 +23,13 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    git
+    tmux
+  ];
+
   system.stateVersion = "25.05";
 }
 
