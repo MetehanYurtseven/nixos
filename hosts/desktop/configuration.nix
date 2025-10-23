@@ -8,6 +8,7 @@
     ./users.nix
 
     ../../pkgs.nix
+    ../../system/packages.nix
     ../../system/console.nix
     ../../system/environment.nix
     ../../system/security.nix
@@ -22,13 +23,6 @@
   time.timeZone = "Europe/Berlin";
 
   nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    tmux
-  ];
 
   system.stateVersion = "25.05";
 }
