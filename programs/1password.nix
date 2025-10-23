@@ -98,15 +98,6 @@
         gpg.ssh.program = "\${pkgs._1password-gui}/bin/op-ssh-sign";
       };
     };
-
-    # ZSH Shell Plugins
-    programs.zsh.initContent = ''
-      # 1Password Shell Plugins initialisieren
-      # Dies ermöglicht automatische Credential-Injection für CLI Tools
-      if command -v op &> /dev/null; then
-        eval "$(op plugin init zsh)"
-      fi
-    '';
   };
 
   # ============================================================================
