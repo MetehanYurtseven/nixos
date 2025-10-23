@@ -7,7 +7,6 @@
     ./hardware.nix
     ./users.nix
 
-    ../../pkgs.nix
     ../../system/packages.nix
     ../../system/console.nix
     ../../system/environment.nix
@@ -23,6 +22,13 @@
   time.timeZone = "Europe/Berlin";
 
   nixpkgs.config.allowUnfree = true;
+
+  environment.systemPackages = map 
+    (name: pkgs.${name}) 
+    (builtins.filter 
+      (line: line != "" && !(lib.hasPrefix "#" line))
+      (lib.splitString "\n" (builtins.readFile ../../packages.txt))
+    );
 
   system.stateVersion = "25.05";
 }
