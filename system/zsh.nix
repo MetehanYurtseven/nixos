@@ -29,6 +29,24 @@
       ];
       theme = "dieter";
     };
+
+    interactiveShellInit = ''
+      pkgs() {
+        local file="/etc/nixos/pkgs"
+        local hash_before=$(sha256sum "$file" | awk '{print $1}')
+        
+        ''${EDITOR:-vim} "$file"
+        
+        local hash_after=$(sha256sum "$file" | awk '{print $1}')
+        
+        if [ "$hash_before" != "$hash_after" ]; then
+          echo "📦 Changes detected, applying configuration..."
+          apply
+        else
+          echo "✓ No changes detected."
+        fi
+      }
+    '';
   };
 }
 
