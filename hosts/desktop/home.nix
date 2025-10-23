@@ -1,13 +1,13 @@
 { config, pkgs, ... }: {
   imports = [
-    ./home/xdg.nix
-    ./home/git.nix
-    ./home/zsh.nix
-    ./home/neovim.nix
-    ./home/kitty.nix
-    ./home/fonts.nix
-    ./home/cursor.nix
-    ./home/hyprland.nix
+    ../../home/xdg.nix
+    ../../home/git.nix
+    ../../home/zsh.nix
+    ../../home/neovim.nix
+    ../../home/kitty.nix
+    ../../home/fonts.nix
+    ../../home/cursor.nix
+    ./hyprland.nix
   ];
 
   home.packages = with pkgs; [
@@ -23,3 +23,4 @@
 
   home.stateVersion = "18.09";
 }
+

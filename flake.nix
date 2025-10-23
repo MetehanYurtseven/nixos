@@ -14,14 +14,13 @@
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./configuration.nix
+        ./hosts/desktop/configuration.nix
         
-        # Home Manager einbinden
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users."metehan.yurtseven" = import ./home.nix;
+          home-manager.users."metehan.yurtseven" = import ./hosts/desktop/home.nix;
         }
       ];
     };
