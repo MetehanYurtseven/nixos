@@ -41,7 +41,7 @@
         
         if [ "$hash_before" != "$hash_after" ]; then
           echo "📦 Changes detected, applying configuration..."
-          apply
+          sudo nixos-rebuild switch
         else
           echo "✓ No changes detected."
         fi
