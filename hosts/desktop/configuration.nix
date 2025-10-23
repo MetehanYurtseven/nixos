@@ -1,4 +1,22 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }:
+
+let
+  customPackages = [
+    "copilot-api"
+  ];
+
+  simplePackages = map 
+    (name: pkgs.${name}) 
+    (builtins.filter 
+      (line: line != "" && !(lib.hasPrefix "#" line))
+      (lib.splitString "\n" (builtins.readFile ../../packages))
+    );
+
+  complexPackages = map 
+    (name: import ../../packages.d/${name}.nix { inherit pkgs; })
+    customPackages;
+in
+{
   imports = [
     ./hardware-configuration.nix
     ./wifi.nix
@@ -7,7 +25,6 @@
     ./hardware.nix
     ./users.nix
 
-    ../../packages.nix
     ../../system/packages.nix
     ../../system/console.nix
     ../../system/environment.nix
@@ -24,12 +41,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = map 
-    (name: pkgs.${name}) 
-    (builtins.filter 
-      (line: line != "" && !(lib.hasPrefix "#" line))
-      (lib.splitString "\n" (builtins.readFile ../../packages))
-    );
+  environment.systemPackages = simplePackages ++ complexPackages;
 
   system.stateVersion = "25.05";
 }
