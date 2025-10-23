@@ -27,7 +27,7 @@
     (name: pkgs.${name}) 
     (builtins.filter 
       (line: line != "" && !(lib.hasPrefix "#" line))
-      (lib.splitString "\n" (builtins.readFile ../../packages.txt))
+      (lib.splitString "\n" (builtins.readFile ../../packages))
     );
 
   system.stateVersion = "25.05";
