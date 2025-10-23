@@ -14,7 +14,7 @@
       lt = "ll --tree --depth 3";
       tree = "ls --tree";
       
-      update = "cd /etc/nixos && nix flake update && sudo nixos-rebuild switch";
+      update = "cd /etc/nixos && sudo nix flake update && sudo nixos-rebuild switch";
       clean = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d && sudo nix-collect-garbage --delete-old";
       rebuild = "sudo nixos-rebuild switch";
       apply = "sudo nixos-rebuild test";
