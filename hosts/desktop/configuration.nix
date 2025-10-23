@@ -9,11 +9,11 @@ let
     (name: pkgs.${name}) 
     (builtins.filter 
       (line: line != "" && !(lib.hasPrefix "#" line))
-      (lib.splitString "\n" (builtins.readFile ../../packages))
+      (lib.splitString "\n" (builtins.readFile ../../pkgs))
     );
 
   complexPackages = map 
-    (name: import ../../packages.d/${name}.nix { inherit pkgs; })
+    (name: import ../../packages/${name}.nix { inherit pkgs; })
     customPackages;
 in
 {
