@@ -4,6 +4,8 @@
     wget
     git
     tmux
+    fzf
+    lsd
   ];
 }
 
