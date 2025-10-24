@@ -247,6 +247,7 @@ in
         "float, title:(1Password)"
         "size 70% 70%, title:(1Password)"
         "center, title:(1Password)"
+        "stayfocused, title:(Quick Access - 1Password)"
 
         "float, title:(Volume Control)"
         "size 50% 50%, title:(Volume Control)"
