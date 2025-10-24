@@ -14,21 +14,21 @@
 
   # 🎨 APPEARANCE
   appearance = {
-    font = "Mononoki Nerd Font";
+    font = "Mononoki Nerd Font"; # Default: Mononoki Nerd Font
   };
 
   # ⌨️ INPUT
   input = {
     keyboardLayout = "de";
-    modifierKey = "SUPER";
-    mouseSensitivity = 0;
+    modifierKey = "SUPER"; # Default: SUPER
+    mouseSensitivity = 0; # Default: 0
   };
 
   # 💻 APPLICATIONS
   applications = {
-    terminal = "kitty";
-    fileManager = "thunar";
-    browser = "chromium --disable-features=WaylandWpColorManagerV1";
+    terminal = "kitty"; # Default: kitty
+    fileManager = "thunar"; # Default: thunar
+    browser = "chromium --disable-features=WaylandWpColorManagerV1"; # Default: chromium
   };
 
   # 🖼 WALLPAPER

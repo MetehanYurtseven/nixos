@@ -1,11 +1,12 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    tmux
-    fzf
-    lsd
+    vim # Text Editor
+    wget # Download Manager
+    git # Git
+    tmux # Terminal Multiplexer
+    fzf # Enhanced CTRL+R Search
+    lsd # Enhanced ls command
+    busybox # Core utils
   ];
 }
 

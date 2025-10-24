@@ -14,20 +14,19 @@
 
   home.packages = with pkgs; [
     # System
-    kitty
-    xfce.thunar
-    hyprpolkitagent
+    chromium # Internet Browser
+    xfce.thunar # File Manager
+    kitty # Terminal
+    hyprpolkitagent # PolKit Agent for Hyprland
 
     # Fonts
-    nerd-fonts.hack
-    nerd-fonts.mononoki
-    nerd-fonts.symbols-only
-    noto-fonts-emoji
+    nerd-fonts.hack # Hack Nerd Font
+    nerd-fonts.mononoki # Mononoki Nerd Font
+    nerd-fonts.symbols-only # Symbols Only Nerd Font
+    noto-fonts-emoji # Emoji Font
 
     # General
-    nodejs_24
-    code-cursor-fhs
-    chromium
+    code-cursor-fhs # Cursor for VS Code
   ];
 
   home.stateVersion = "18.09";
