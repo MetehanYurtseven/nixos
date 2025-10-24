@@ -50,9 +50,8 @@
       "$mod" = "SUPER";
 
       workspace = [
-      	"name:home, monitor:DP-4, default:true"
-      	"0, monitor:DP-5, default:true"
-      	"1, monitor:DP-5"
+      	"name:󱄅, monitor:DP-4, default:true"
+      	"1, monitor:DP-5, default:true"
       	"2, monitor:DP-5"
       	"3, monitor:DP-5"
       	"4, monitor:DP-5"
@@ -61,6 +60,7 @@
       	"7, monitor:DP-5"
       	"8, monitor:DP-5"
       	"9, monitor:DP-5"
+      	"0, monitor:DP-5"
       	"special:music, on-created-empty:$music"
       	"special:pass, on-created-empty:$pass"
       	"special:wiki, on-created-empty:$wiki"
@@ -187,7 +187,7 @@
         "$mod SHIFT, k, resizeactive, 0 -100"
         "$mod SHIFT, j, resizeactive, 0 100"
 
-        "$mod, code:49, workspace, name:󰣇"
+        "$mod, code:49, workspace, name:󱄅"
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
         "$mod, 3, workspace, 3"
@@ -203,7 +203,7 @@
         ", mouse:275, workspace, e+1"
         ", mouse:276, workspace, e-1"
 
-        "$mod SHIFT, code:49, movetoworkspace, name:󰣇"
+        "$mod SHIFT, code:49, movetoworkspace, name:󱄅"
         "$mod SHIFT, 1, movetoworkspace, 1"
         "$mod SHIFT, 2, movetoworkspace, 2"
         "$mod SHIFT, 3, movetoworkspace, 3"

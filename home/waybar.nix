@@ -24,34 +24,34 @@
       
       clock = {
         interval = 1;
-        format = "{:%d.%m.%Y %H:%M:%S}";
+        format = "  {:%d.%m.%Y %H:%M:%S}";
       };
       
       cpu = {
         interval = 1;
-        format = "{usage}% ";
+        format = "  {usage}%";
         on-click = "kitty htop --sort-key=PERCENT_CPU";
       };
       
       memory = {
         interval = 1;
-        format = "{used:0.1f}G/{total:0.1f}G ";
+        format = "  {used:0.1f}G/{total:0.1f}G";
         on-click = "kitty htop --sort-key=PERCENT_MEM";
       };
       
       network = {
-        format-wifi = "{ipaddr} ";
-        format-ethernet = "{ipaddr} ";
-        format-disconnected = "Disconnected ⚠";
+        format-wifi = "  {ipaddr}";
+        format-ethernet = "  {ipaddr}";
+        format-disconnected = "  Disconnected";
       };
       
       pulseaudio = {
         scroll-step = 5;
-        format = "{volume}% {icon}";
-        format-bluetooth = "{volume}% {icon}";
-        format-muted = "";
+        format = "{icon}  {volume}%";
+        format-bluetooth = "{icon}  {volume}%";
+        format-muted = "";
         format-icons = {
-          default = ["" ""];
+          default = ["" "" ""];
         };
         on-click = "pwvucontrol";
       };
@@ -80,7 +80,7 @@
       * {
         border: none;
         border-radius: 0;
-        font-family: "Hack Nerd Font";
+        font-family: "Mononoki Nerd Font";
         font-size: 15px;
         min-height: 0;
       }

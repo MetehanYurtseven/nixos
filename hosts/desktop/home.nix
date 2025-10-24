@@ -18,6 +18,8 @@
     hyprpolkitagent
     nerd-fonts.hack
     nerd-fonts.mononoki
+    nerd-fonts.symbols-only
+    noto-fonts-emoji
     code-cursor-fhs
     nodejs_24
   ];
