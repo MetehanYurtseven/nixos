@@ -90,6 +90,7 @@
       }
       
       #clock, #cpu, #memory, #network, #pulseaudio, #tray, #workspaces, #window {
+        background: rgba(25, 23, 36, 0.8);
         border: 1px solid @muted;
         padding: 4px 10px;
         margin: 5px 5px;
