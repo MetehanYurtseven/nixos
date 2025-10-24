@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 
+let
+  settings = import ../settings.nix;
+in
 {
   # ============================================================================
   # 1PASSWORD ALL-IN-ONE CONFIGURATION
@@ -25,6 +28,45 @@
 
   # PolKit für System-Authentication
   security.polkit.enable = true;
+
+  # ----------------------------------------------------------------------------
+  # PAM RSSH - SSH-AGENT BASIERTE SUDO-AUTHENTIFIZIERUNG
+  # ----------------------------------------------------------------------------
+  # Ermöglicht sudo-Befehle mit SSH-Key aus 1Password statt Passwort
+  # Basiert auf pam_rssh (moderne Alternative zu pam_ssh_agent_auth)
+  
+  # PAM rssh für SSH-Agent basierte Authentifizierung
+  security.pam.rssh = {
+    enable = true;
+    settings = {
+      # Sichere authorized_keys Datei (nicht user-writeable)
+      # ${user} wird automatisch durch den Username ersetzt
+      auth_key_file = "/etc/security/authorized_keys/\${user}";
+    };
+  };
+
+  # sudo mit rssh aktivieren
+  security.pam.services.sudo = {
+    rssh = true;
+  };
+
+  # sudo Konfiguration
+  security.sudo = {
+    enable = true;
+    # SSH_AUTH_SOCK für sudo erhalten (KRITISCH für pam_rssh)
+    # Ohne diese Zeile kann sudo nicht auf den 1Password SSH-Agent zugreifen
+    extraConfig = ''
+      Defaults env_keep += "SSH_AUTH_SOCK"
+    '';
+  };
+
+  # Erstelle authorized_keys Datei für pam_rssh
+  # Diese Datei ist root-owned (mode 0444) und nicht user-writeable → sicher
+  # Der SSH-Key wird aus settings.nix importiert
+  environment.etc."security/authorized_keys/${settings.user.username}" = {
+    text = settings.user.sshKey;
+    mode = "0444";  # Read-only für alle
+  };
 
   # GNOME Keyring für 2FA Token Persistence (funktioniert standalone)
   services.gnome.gnome-keyring.enable = true;
@@ -80,10 +122,16 @@
       };
     };
 
-    # SSH_AUTH_SOCK Environment Variable
-    home.sessionVariables = {
-      SSH_AUTH_SOCK = "\${config.home.homeDirectory}/.1password/agent.sock";
-    };
+    # SSH_AUTH_SOCK: Conditional setzen (nur in lokalen Sessions)
+    # - Lokal (Hyprland): 1Password Agent aktiv
+    # - SSH ohne ForwardAgent: Kein Agent → sudo Passwort-Fallback
+    # - SSH mit ForwardAgent: Forwarded Agent bleibt aktiv
+    programs.zsh.initContent = ''
+      # SSH_AUTH_SOCK nur in lokalen Sessions setzen (nicht bei SSH)
+      if [ -z "$SSH_CONNECTION" ]; then
+        export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+      fi
+    '';
 
     # Git SSH Signing
     programs.git = {
@@ -146,6 +194,14 @@
   #    - AWS/GitHub Credentials in 1Password speichern
   #    - aws/gh Commands nutzen → 1Password Prompt erscheint
   # 
+  # 5. sudo mit SSH-Key testen:
+  #    - Terminal öffnen (neue Shell für Environment-Variablen)
+  #    - Prüfen: echo $SSH_AUTH_SOCK (sollte ~/.1password/agent.sock sein)
+  #    - Prüfen: ssh-add -l (sollte SSH-Keys anzeigen)
+  #    - Testen: sudo ls /root
+  #    - 1Password sollte Prompt zeigen → Authentifizierung mit SSH-Key
+  #    - Kein Passwort nötig!
+  # 
   # ============================================================================
   # TROUBLESHOOTING
   # ============================================================================
@@ -165,5 +221,19 @@
   # 2FA Token nicht persistent:
   # - Check: systemctl --user status gnome-keyring
   # - Bei Problemen: GNOME Keyring neustarten
+  # 
+  # sudo fragt nach Passwort statt SSH-Key:
+  # - Check: echo $SSH_AUTH_SOCK (muss ~/.1password/agent.sock sein)
+  # - Check: ssh-add -l (muss Keys anzeigen)
+  # - Check: cat /etc/security/authorized_keys/metehan.yurtseven
+  # - Check: sudo cat /etc/pam.d/sudo (sollte pam_rssh enthalten)
+  # - Lösung: 1Password SSH Agent aktivieren (Settings → Developer)
+  # - Lösung: Neue Shell öffnen mit: exec $SHELL
+  # 
+  # pam_rssh funktioniert nicht:
+  # - Check: ls -l /etc/security/authorized_keys/
+  # - Check: journalctl -xe | grep pam
+  # - Stelle sicher dass SSH-Key in 1Password vorhanden ist
+  # - Private Key muss in 1Password sein, Public Key in settings.nix
   # ============================================================================
 }

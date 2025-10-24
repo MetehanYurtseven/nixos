@@ -8,20 +8,26 @@
     ../../home/fonts.nix
     ../../home/cursor.nix
     ../../home/waybar.nix
+    ../../home/wallpaper.nix
     ./hyprland.nix
   ];
 
   home.packages = with pkgs; [
+    # System
     kitty
     xfce.thunar
-    chromium
     hyprpolkitagent
+
+    # Fonts
     nerd-fonts.hack
     nerd-fonts.mononoki
     nerd-fonts.symbols-only
     noto-fonts-emoji
-    code-cursor-fhs
+
+    # General
     nodejs_24
+    code-cursor-fhs
+    chromium
   ];
 
   home.stateVersion = "18.09";

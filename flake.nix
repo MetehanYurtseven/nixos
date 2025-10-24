@@ -10,20 +10,24 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
-    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./hosts/desktop/configuration.nix
-        
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users."metehan.yurtseven" = import ./hosts/desktop/home.nix;
-        }
-      ];
+  outputs = { self, nixpkgs, home-manager, ... }:
+    let
+      settings = import ./settings.nix;
+    in
+    {
+      nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/desktop/configuration.nix
+          
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${settings.user.username} = import ./hosts/desktop/home.nix;
+          }
+        ];
+      };
     };
-  };
 }
 

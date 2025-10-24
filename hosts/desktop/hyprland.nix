@@ -1,11 +1,16 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+
+let
+  settings = import ../../settings.nix;
+in
+{
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      "$terminal" = "kitty";
-      "$fileManager" = "thunar";
+      "$terminal" = settings.applications.terminal;
+      "$fileManager" = settings.applications.fileManager;
       "$launcher" = "vicinae toggle";
-      "$browser" = "chromium --disable-features=WaylandWpColorManagerV1";
+      "$browser" = settings.applications.browser;
       "$pass" = "1password";
       "$music" = "youtube-music";
       "$wiki" = "gtk-launch slite";
@@ -47,7 +52,7 @@
         }
       ];
 
-      "$mod" = "SUPER";
+      "$mod" = settings.input.modifierKey;
 
       workspace = [
       	"name:󱄅, monitor:DP-4, default:true"
@@ -139,10 +144,10 @@
       };
 
       input = {
-        kb_layout = "de";
+        kb_layout = settings.input.keyboardLayout;
         kb_options = "ctrl:nocaps";
         follow_mouse = 1;
-        sensitivity = 0;
+        sensitivity = settings.input.mouseSensitivity;
         touchpad.natural_scroll = false;
       };
 
