@@ -7,6 +7,7 @@
     ../../home/kitty.nix
     ../../home/fonts.nix
     ../../home/cursor.nix
+    ../../home/waybar.nix
     ./hyprland.nix
   ];
 

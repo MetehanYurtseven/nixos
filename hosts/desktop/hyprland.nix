@@ -71,6 +71,7 @@
       ];
 
       exec-once = [
+      	"waybar &"
       	"1password --ozone-platform-hint=x11 --silent &"
       ];
 

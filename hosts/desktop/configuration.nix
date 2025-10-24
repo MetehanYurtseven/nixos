@@ -33,6 +33,7 @@ in
     ../../system/zsh.nix
     ../../system/neovim.nix
     ../../system/1password.nix
+    ../../system/audio.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
