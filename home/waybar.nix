@@ -24,19 +24,19 @@
       
       clock = {
         interval = 1;
-        format = "  {:%d.%m.%Y %H:%M:%S}";
-      };
-      
-      cpu = {
-        interval = 1;
-        format = "  {usage}%";
-        on-click = "kitty htop --sort-key=PERCENT_CPU";
+        format = "{:%d.%m.%Y %H:%M:%S}";
       };
       
       memory = {
         interval = 1;
         format = "  {used:0.1f}G/{total:0.1f}G";
         on-click = "kitty htop --sort-key=PERCENT_MEM";
+      };
+
+      cpu = {
+        interval = 1;
+        format = "  {usage}%";
+        on-click = "kitty htop --sort-key=PERCENT_CPU";
       };
       
       network = {
@@ -99,10 +99,6 @@
         color: @text;
       }
       
-      #cpu, #memory, #pulseaudio {
-        padding-right: 15px;
-      }
-      
       #workspaces {
         margin-left: 20px;
         padding: 4px 5px;
@@ -117,7 +113,6 @@
       }
       
       #network {
-        padding-right: 20px;
         margin-right: 20px;
       }
       
