@@ -101,7 +101,7 @@
       
       #workspaces {
         margin-left: 20px;
-        padding: 4px 5px;
+        padding: 4px 0px;
       }
       
       #workspaces button {
