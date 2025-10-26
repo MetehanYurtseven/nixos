@@ -76,8 +76,9 @@ in
       ];
 
       exec-once = [
-      	"waybar &"
-      	"1password --ozone-platform-hint=x11 --silent &"
+      	"waybar &"  # Waybar Menu Bar
+        "vicinae server &"  # Vicinae Launcher
+      	"1password --ozone-platform-hint=x11 --silent &"  # 1Password
       ];
 
       env = [
