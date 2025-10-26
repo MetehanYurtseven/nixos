@@ -7,9 +7,9 @@
       position = "top";
       height = 24;
       
-      modules-left = ["hyprland/workspaces" "hyprland/window"];
-      modules-center = ["clock" "tray"];
-      modules-right = ["memory" "cpu" "pulseaudio" "network"];
+      modules-left = ["hyprland/workspaces" "tray"];
+      modules-center = ["hyprland/window"];
+      modules-right = ["memory" "cpu" "pulseaudio" "network" "clock"];
       
       "hyprland/workspaces" = {
         active-only = false;
@@ -112,13 +112,13 @@
         color: @text;
       }
       
-      #network {
+      #clock {
         margin-right: 20px;
       }
       
       @keyframes blink {
         to {
-          background-color: #ffffff;
+          background-color: @iris;
           color: black;
         }
       }
