@@ -1,64 +1,61 @@
 { lib
-, stdenv
-, fetchFromGitHub
-, cmake
-, ninja
-, nodejs
+, stdenvNoCC
+, fetchzip
+, autoPatchelfHook
+, makeWrapper
 , qt6
 , kdePackages
-, protobuf
-, cmark-gfm
+, wayland
+, libxkbcommon
+, libGL
 , libqalculate
-, minizip
-, rapidfuzz-cpp
 }:
 
-stdenv.mkDerivation rec {
+stdenvNoCC.mkDerivation rec {
   pname = "vicinae";
-  version = "0.15.0";
+  version = "0.15.5";
 
-  src = fetchFromGitHub {
-    owner = "vicinaehq";
-    repo = "vicinae";
-    rev = "v${version}";
-    hash = "sha256-1fw40nv5h3s7m8f3fka9m9hpfbay5cd3hlzc2bq7q0m27zvm7gs2";
+  src = fetchzip {
+    url = "https://github.com/vicinaehq/vicinae/releases/download/v${version}/vicinae-linux-x86_64-v${version}.tar.gz";
+    hash = "sha256-jYXxifHK74SBx7OhrXOAzqIcbDxZJomgRuBWH3bBfYQ=";
+    stripRoot = false;
   };
 
   nativeBuildInputs = [
-    cmake
-    ninja
-    nodejs
-    rapidfuzz-cpp
+    autoPatchelfHook
+    makeWrapper
     qt6.wrapQtAppsHook
   ];
 
   buildInputs = [
     qt6.qtbase
-    qt6.qtsvg
     qt6.qtwayland
     kdePackages.qtkeychain
     kdePackages.layer-shell-qt
-    protobuf
-    cmark-gfm
     libqalculate
-    minizip
+    wayland
+    libxkbcommon
+    libGL
   ];
 
-  preConfigure = ''
-    export HOME=$TMPDIR
+  installPhase = ''
+    runHook preInstall
+
+    mkdir -p $out
+    cp -r bin lib share $out/
+
+    runHook postInstall
   '';
-
-  cmakeFlags = [
-    "-G Ninja"
-    "-DBUILD_TESTING=OFF"
-  ];
 
   meta = with lib; {
     description = "A high-performance, native launcher for Linux — built with C++ and Qt";
     homepage = "https://docs.vicinae.com";
+    downloadPage = "https://github.com/vicinaehq/vicinae/releases";
+    changelog = "https://github.com/vicinaehq/vicinae/releases/tag/v${version}";
     mainProgram = "vicinae";
     license = licenses.gpl3Only;
-    platforms = platforms.linux;
+    platforms = [ "x86_64-linux" ];
     maintainers = [ ];
+    sourceProvenance = with sourceTypes; [ binaryNativeCode ];
   };
 }
