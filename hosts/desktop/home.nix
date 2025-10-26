@@ -6,7 +6,7 @@
     ../../home/neovim.nix
     ../../home/kitty.nix
     ../../home/fonts.nix
-    ../../home/cursor.nix
+    ../../home/gtk.nix
     ../../home/waybar.nix
     ../../home/wallpaper.nix
     ./hyprland.nix
@@ -18,6 +18,9 @@
     xfce.thunar # File Manager
     kitty # Terminal
     hyprpolkitagent # PolKit Agent for Hyprland
+
+    # Theme
+    rose-pine-gtk-theme # GTK Theme
 
     # Fonts
     nerd-fonts.hack # Hack Nerd Font
