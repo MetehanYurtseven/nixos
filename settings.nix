@@ -33,7 +33,7 @@
 
   # 🖼 WALLPAPER
   wallpaper = {
-    path = "~/pictures/wallpapers/into-the-woods-5120x1440.jpg";
+    path = "/home/metehan.yurtseven/pictures/wallpapers/into-the-woods-5120x1440.jpg";
   };
 }
 

@@ -4,11 +4,19 @@ let
   settings = import ../settings.nix;
 in
 {
-  # Wallpaper-Management Pakete und Helper-Script
+  services.hyprpaper = {
+    enable = true;
+    
+    settings = {
+      ipc = "on"; # IPC als String aktivieren für dynamische Wallpaper-Änderungen
+      splash = false; # Hyprland Splash Screen deaktivieren
+      preload = [ settings.wallpaper.path ]; # Wallpaper vorladen für rwpspread
+    };
+  };
+
   home.packages = with pkgs; [
-    # Wallpaper Tools
-    hyprpaper    # Wayland Wallpaper Utility für Hyprland
-    rwpspread    # Multi-Monitor Wallpaper Spanning Tool
+    hyprpaper # Benötigt für rwpspread (muss im PATH sein)
+    rwpspread # Multi-Monitor Wallpaper Spanning Tool
     
     # Helper Script für manuelles Wallpaper-Setzen
     (writeShellScriptBin "set-wallpaper" ''
@@ -28,42 +36,20 @@ in
         exit 1
       fi
       
-      # Prüfe ob hyprpaper läuft
-      if ! pgrep -x "hyprpaper" > /dev/null; then
-        echo "Starting hyprpaper..."
-        ${hyprpaper}/bin/hyprpaper &
-        sleep 2
-      fi
-      
-      # Setze Wallpaper mit rwpspread (automatisches Spanning)
+      # Preload und span mit rwpspread
       echo "Setting wallpaper: $WALLPAPER_PATH"
-      ${rwpspread}/bin/rwpspread -w "$WALLPAPER_PATH"
+      hyprctl hyprpaper preload "$WALLPAPER_PATH"
+      ${pkgs.rwpspread}/bin/rwpspread --image "$WALLPAPER_PATH"
       
       echo "Wallpaper successfully set!"
     '')
   ];
 
-  # Hyprpaper Konfiguration
-  xdg.configFile."hypr/hyprpaper.conf".text = ''
-    # IPC aktivieren für dynamische Wallpaper-Änderungen
-    # Ermöglicht rwpspread die Kommunikation mit hyprpaper
-    ipc = on
-    
-    # Hyprland Splash Screen deaktivieren
-    splash = false
-    
-    # Optional: Splash Offset (falls splash = true)
-    # splash_offset = 2.0
-    
-    # Optional: Splash Color (falls splash = true)  
-    # splash_color = 0x55ffffff
-  '';
-
   # Hyprland Autostart für Wallpaper
+  # rwpspread im Daemon-Mode: Automatisches Spanning + Monitor-Hotplug-Support
   wayland.windowManager.hyprland.settings = {
     exec-once = [
-      "hyprpaper &"
-      "sleep 2 && rwpspread -w ${settings.wallpaper.path}"
+      "rwpspread --daemon --backend hyprpaper --image ${settings.wallpaper.path}"
     ];
   };
 }

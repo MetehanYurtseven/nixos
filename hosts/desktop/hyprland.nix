@@ -37,7 +37,7 @@ in
 
       monitorv2 = [
         {
-          output = "DP-5";
+          output = "DP-3";
           mode = "preferred";
           position = "2560x0";
           scale = 1;
@@ -56,16 +56,16 @@ in
 
       workspace = [
       	"name:󱄅, monitor:DP-4, default:true"
-      	"1, monitor:DP-5, default:true"
-      	"2, monitor:DP-5"
-      	"3, monitor:DP-5"
-      	"4, monitor:DP-5"
-      	"5, monitor:DP-5"
-      	"6, monitor:DP-5"
-      	"7, monitor:DP-5"
-      	"8, monitor:DP-5"
-      	"9, monitor:DP-5"
-      	"0, monitor:DP-5"
+      	"1, monitor:DP-3, default:true"
+      	"2, monitor:DP-3"
+      	"3, monitor:DP-3"
+      	"4, monitor:DP-3"
+      	"5, monitor:DP-3"
+      	"6, monitor:DP-3"
+      	"7, monitor:DP-3"
+      	"8, monitor:DP-3"
+      	"9, monitor:DP-3"
+      	"0, monitor:DP-3"
       	"special:music, on-created-empty:$music"
       	"special:pass, on-created-empty:$pass"
       	"special:wiki, on-created-empty:$wiki"
@@ -139,8 +139,8 @@ in
       };
 
       misc = { 
-          force_default_wallpaper = -1;
-          disable_hyprland_logo = false;
+          force_default_wallpaper = 0;
+          disable_hyprland_logo = true;
       };
 
       input = {

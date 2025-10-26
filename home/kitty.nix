@@ -85,80 +85,76 @@ in
       color15 = "#e0def4";
     };
 
-    # Keyboard shortcuts
-    keybindings = {
-      # Window splits
-      "ctrl+e" = "launch --location=vsplit --cwd=current";
-      "ctrl+o" = "launch --location=hsplit --cwd=current";
-      "ctrl+enter" = "launch --location=hsplit --cwd=current";
-      "ctrl+h" = "previous_window";
-      "ctrl+l" = "next_window";
-
-      # Clipboard
-      "kitty_mod+c" = "copy_to_clipboard";
-      "kitty_mod+v" = "paste_from_clipboard";
-      "shift+insert" = "paste_from_selection";
-
-      # Scrolling
-      "kitty_mod+k" = "scroll_line_up";
-      "kitty_mod+j" = "scroll_line_down";
-      "kitty_mod+u" = "scroll_page_up";
-      "kitty_mod+d" = "scroll_page_down";
-      "ctrl+home" = "scroll_home";
-      "ctrl+end" = "scroll_end";
-
-      # Window management
-      "kitty_mod+n" = "new_os_window";
-
-      # Tab management
-      "kitty_mod+right" = "next_tab";
-      "kitty_mod+left" = "previous_tab";
-      "kitty_mod+q" = "close_tab";
-      "kitty_mod+." = "move_tab_forward";
-      "kitty_mod+," = "move_tab_backward";
-      "kitty_mod+alt+t" = "set_tab_title";
-
-      # Layout management
-      "kitty_mod+l" = "next_layout";
-      "kitty_mod+t" = "goto_layout tall";
-      "kitty_mod+s" = "goto_layout stack";
-
-      # Font sizes
-      "kitty_mod+equal" = "change_font_size all +2.0";
-      "kitty_mod+minus" = "change_font_size all -2.0";
-      "kitty_mod+backspace" = "change_font_size all 0";
-
-      # Hints kitten
-      "kitty_mod+i" = "kitten hints";
-      "kitty_mod+p>f" = "kitten hints --type path --program -";
-      "kitty_mod+p>shift+f" = "kitten hints --type path";
-      "kitty_mod+p>l" = "kitten hints --type line --program -";
-      "kitty_mod+p>w" = "kitten hints --type word --program -";
-      "kitty_mod+p>h" = "kitten hints --type hash --program -";
-      "kitty_mod+p>n" = "kitten hints --type linenum";
-      "kitty_mod+p>y" = "kitten hints --type hyperlink";
-
-      # Miscellaneous
-      "kitty_mod+a>m" = "set_background_opacity +0.1";
-      "kitty_mod+a>l" = "set_background_opacity -0.1";
-      "kitty_mod+a>1" = "set_background_opacity 1";
-      "kitty_mod+a>d" = "set_background_opacity default";
-      "kitty_mod+delete" = "clear_terminal reset active";
-
-      # kitty-scrollback.nvim
-      "kitty_mod+h" = "kitty_scrollback_nvim";
-      "kitty_mod+g" = "kitty_scrollback_nvim --config ksb_builtin_last_cmd_output";
-    };
-
     extraConfig = ''
       # kitty_mod definition (ctrl+shift)
       kitty_mod ctrl+shift
       
-      # Clear all default shortcuts
+      # Clear all default shortcuts FIRST
       clear_all_shortcuts yes
+
+      # Window splits
+      map ctrl+e launch --location=vsplit --cwd=current
+      map ctrl+o launch --location=hsplit --cwd=current
+      map ctrl+enter launch --location=hsplit --cwd=current
+      map ctrl+h previous_window
+      map ctrl+l next_window
+
+      # Clipboard
+      map kitty_mod+c copy_to_clipboard
+      map kitty_mod+v paste_from_clipboard
+      map shift+insert paste_from_selection
+
+      # Scrolling
+      map kitty_mod+k scroll_line_up
+      map kitty_mod+j scroll_line_down
+      map kitty_mod+u scroll_page_up
+      map kitty_mod+d scroll_page_down
+      map ctrl+home scroll_home
+      map ctrl+end scroll_end
+
+      # Window management
+      map kitty_mod+n new_os_window
+
+      # Tab management
+      map kitty_mod+right next_tab
+      map kitty_mod+left previous_tab
+      map kitty_mod+t new_tab
+      map kitty_mod+q close_tab
+      map kitty_mod+. move_tab_forward
+      map kitty_mod+, move_tab_backward
+      map kitty_mod+alt+t set_tab_title
+
+      # Layout management
+      map kitty_mod+l next_layout
+
+      # Font sizes
+      map kitty_mod+equal change_font_size all +2.0
+      map kitty_mod+minus change_font_size all -2.0
+      map kitty_mod+backspace change_font_size all 0
+
+      # Hints kitten
+      map kitty_mod+i kitten hints
+      map kitty_mod+p>f kitten hints --type path --program -
+      map kitty_mod+p>shift+f kitten hints --type path
+      map kitty_mod+p>l kitten hints --type line --program -
+      map kitty_mod+p>w kitten hints --type word --program -
+      map kitty_mod+p>h kitten hints --type hash --program -
+      map kitty_mod+p>n kitten hints --type linenum
+      map kitty_mod+p>y kitten hints --type hyperlink
+
+      # Miscellaneous
+      map kitty_mod+a>m set_background_opacity +0.1
+      map kitty_mod+a>l set_background_opacity -0.1
+      map kitty_mod+a>1 set_background_opacity 1
+      map kitty_mod+a>d set_background_opacity default
+      map kitty_mod+delete clear_terminal reset active
 
       # kitty-scrollback.nvim action alias
       action_alias kitty_scrollback_nvim kitten /home/melthrox/.local/share/nvim/plugged/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py
+      
+      # kitty-scrollback.nvim shortcuts
+      map kitty_mod+h kitty_scrollback_nvim
+      map kitty_mod+g kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
       
       # Mouse mapping for kitty-scrollback.nvim
       mouse_map ctrl+shift+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output
