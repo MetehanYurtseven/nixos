@@ -1,4 +1,6 @@
-{ pkgs, ... }: pkgs.writeShellScriptBin "copilot-api" ''
-  exec ${pkgs.bun}/bin/bunx copilot-api@latest "$@"
+{ writeShellScriptBin, bun }:
+
+writeShellScriptBin "copilot-api" ''
+  exec ${bun}/bin/bunx copilot-api@latest "$@"
 ''
 

@@ -3,6 +3,7 @@
 let
   customPackages = [
     "copilot-api"
+    "vicinae"
   ];
 
   simplePackages = map 
@@ -13,7 +14,7 @@ let
     );
 
   complexPackages = map 
-    (name: import ../../packages/${name}.nix { inherit pkgs; })
+    (name: pkgs.callPackage ../../packages/${name}.nix { })
     customPackages;
 in
 {
