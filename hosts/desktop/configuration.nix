@@ -43,6 +43,8 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  programs.dconf.enable = true;
+
   environment.systemPackages = simplePackages ++ complexPackages;
 
   system.stateVersion = "25.05";
