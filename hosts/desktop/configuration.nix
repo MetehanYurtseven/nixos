@@ -25,6 +25,7 @@ in
     ./networking.nix
     ./hardware.nix
     ./users.nix
+    ./steam.nix
 
     ../../system/packages.nix
     ../../system/console.nix
