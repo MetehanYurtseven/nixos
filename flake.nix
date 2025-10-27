@@ -8,9 +8,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    winboat = {
+      url = "github:TibixDev/winboat";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, winboat, ... }:
     let
       settings = import ./settings.nix;
     in
@@ -25,6 +30,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${settings.user.username} = import ./hosts/desktop/home.nix;
+            home-manager.extraSpecialArgs = { inherit winboat; };
           }
         ];
       };

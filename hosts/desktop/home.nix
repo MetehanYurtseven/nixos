@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, winboat, ... }: {
   imports = [
     ../../home/xdg.nix
     ../../home/git.nix
@@ -18,6 +18,7 @@
     xfce.thunar # File Manager
     kitty # Terminal
     hyprpolkitagent # PolKit Agent for Hyprland
+    winboat.packages.${pkgs.system}.winboat # Windows App Integration
 
     # Theme
     rose-pine-gtk-theme # GTK Theme
