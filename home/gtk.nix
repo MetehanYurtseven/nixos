@@ -5,9 +5,9 @@ in
 {
   home.pointerCursor = {
     gtk.enable = true;
-    name = "BreezeX-RosePine-Linux";
-    size = 24;
-    package = pkgs.rose-pine-cursor;
+    name = settings.cursor.theme;
+    size = settings.cursor.size;
+    package = pkgs.${settings.cursor.package};
   };
 
   gtk = {
@@ -25,9 +25,8 @@ in
 
     font = {
       name = settings.appearance.font;
-      size = 11;
+      size = 12;
     };
   };
 
 }
-

@@ -17,6 +17,13 @@
     font = "Mononoki Nerd Font"; # Default: Mononoki Nerd Font
   };
 
+  # 🖱️ CURSOR
+  cursor = {
+    theme = "BreezeX-RosePine-Linux";
+    size = 36;
+    package = "rose-pine-cursor";
+  };
+
   # ⌨️ INPUT
   input = {
     keyboardLayout = "de";

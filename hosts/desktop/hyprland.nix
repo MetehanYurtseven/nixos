@@ -79,18 +79,18 @@ in
       	"waybar &"  # Waybar Menu Bar
         "vicinae server &"  # Vicinae Launcher
       	"1password --ozone-platform-hint=x11 --silent &"  # 1Password
-      	"gsettings set org.gnome.desktop.interface cursor-theme 'BreezeX-RosePine-Linux'"  # Fix cursor for GTK apps
-      	"gsettings set org.gnome.desktop.interface cursor-size 24"  # Fix cursor size for GTK apps
+      	"gsettings set org.gnome.desktop.interface cursor-theme '${settings.cursor.theme}'"  # Fix cursor for GTK apps
+      	"gsettings set org.gnome.desktop.interface cursor-size ${toString settings.cursor.size}"  # Fix cursor size for GTK apps
       	"gsettings set org.gnome.desktop.interface icon-theme 'rose-pine'"  # Fix icons for GTK apps
       	"gsettings set org.gnome.desktop.interface gtk-theme 'rose-pine'"  # Fix GTK theme
       ];
 
       env = [
       	"XDG_CURRENT_DESKTOP,Hyprland"
-      	"XCURSOR_THEME,BreezeX-RosePine-Linux"
-      	"XCURSOR_SIZE,24"
-      	"HYPRCURSOR_THEME,BreezeX-RosePine-Linux"
-      	"HYPRCURSOR_SIZE,24"
+      	"XCURSOR_THEME,${settings.cursor.theme}"
+      	"XCURSOR_SIZE,${toString settings.cursor.size}"
+      	"HYPRCURSOR_THEME,${settings.cursor.theme}"
+      	"HYPRCURSOR_SIZE,${toString settings.cursor.size}"
       	"GTK_THEME,rose-pine"
       ];
 
