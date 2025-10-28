@@ -15,11 +15,11 @@ in
       wg0 = {
         ips = [ "10.0.0.9" ];
         # Nutze verschlüsselte Secrets
-        privateKeyFile = config.sops.secrets."wireguard/privateKey".path;
+        privateKeyFile = config.sops.secrets."wireguard/private_key".path;
         peers = [
           {
             publicKey = "m54PyD6ptUetZy17pExI6KnCvLumZEboXfd7YuSDVgA=";
-            presharedKeyFile = config.sops.secrets."wireguard/presharedKey".path;
+            presharedKeyFile = config.sops.secrets."wireguard/preshared_key".path;
             allowedIPs = [
               "10.0.0.0/16"
             ];

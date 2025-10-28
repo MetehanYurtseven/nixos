@@ -7,7 +7,6 @@
     fzf # Enhanced CTRL+R Search
     lsd # Enhanced ls command
     busybox # Core utils
-    jq # json parser
   ];
 }
 

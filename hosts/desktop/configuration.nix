@@ -36,8 +36,13 @@ in
     ../../system/neovim.nix
     ../../system/1password.nix
     ../../system/audio.nix
-    ../../system/docker.nix
   ];
+
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    secrets."wireguard/private_key" = { };
+    secrets."wireguard/preshared_key" = { };
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
