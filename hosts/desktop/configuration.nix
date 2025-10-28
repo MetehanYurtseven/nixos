@@ -44,6 +44,8 @@ in
     secrets."wireguard/preshared_key" = { };
   };
 
+  services.preload.enable = true; # preload increases performence while working up to 55%
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   time.timeZone = "Europe/Berlin";
