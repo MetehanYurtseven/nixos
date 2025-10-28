@@ -92,13 +92,6 @@ in
       # Clear all default shortcuts FIRST
       clear_all_shortcuts yes
 
-      # Window splits
-      map ctrl+e launch --location=vsplit --cwd=current
-      map ctrl+o launch --location=hsplit --cwd=current
-      map ctrl+enter launch --location=hsplit --cwd=current
-      map ctrl+h previous_window
-      map ctrl+l next_window
-
       # Clipboard
       map kitty_mod+c copy_to_clipboard
       map kitty_mod+v paste_from_clipboard
@@ -112,9 +105,6 @@ in
       map ctrl+home scroll_home
       map ctrl+end scroll_end
 
-      # Window management
-      map kitty_mod+n new_os_window
-
       # Tab management
       map kitty_mod+right next_tab
       map kitty_mod+left previous_tab
@@ -124,30 +114,7 @@ in
       map kitty_mod+, move_tab_backward
       map kitty_mod+alt+t set_tab_title
 
-      # Layout management
-      map kitty_mod+l next_layout
-
-      # Font sizes
-      map kitty_mod+equal change_font_size all +2.0
-      map kitty_mod+minus change_font_size all -2.0
-      map kitty_mod+backspace change_font_size all 0
-
-      # Hints kitten
       map kitty_mod+i kitten hints
-      map kitty_mod+p>f kitten hints --type path --program -
-      map kitty_mod+p>shift+f kitten hints --type path
-      map kitty_mod+p>l kitten hints --type line --program -
-      map kitty_mod+p>w kitten hints --type word --program -
-      map kitty_mod+p>h kitten hints --type hash --program -
-      map kitty_mod+p>n kitten hints --type linenum
-      map kitty_mod+p>y kitten hints --type hyperlink
-
-      # Miscellaneous
-      map kitty_mod+a>m set_background_opacity +0.1
-      map kitty_mod+a>l set_background_opacity -0.1
-      map kitty_mod+a>1 set_background_opacity 1
-      map kitty_mod+a>d set_background_opacity default
-      map kitty_mod+delete clear_terminal reset active
 
       # kitty-scrollback.nvim action alias
       action_alias kitty_scrollback_nvim kitten /home/melthrox/.local/share/nvim/plugged/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py
