@@ -1,6 +1,12 @@
 {
   description = "NixOS Configuration with Home Manager";
 
+  # Cachix für Vicinae - wird SOFORT beim Flake-Eval aktiv!
+  nixConfig = {
+    extra-substituters = [ "https://vicinae.cachix.org" ];
+    extra-trusted-public-keys = [ "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc=" ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     
@@ -13,9 +19,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    vicinae.url = "github:vicinaehq/vicinae";
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, ... }:
+  outputs = { self, nixpkgs, home-manager, sops-nix, vicinae, ... }:
     let
       settings = import ./settings.nix;
     in
@@ -29,6 +37,7 @@
           { # Home Manager Configuration
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.sharedModules = [ vicinae.homeManagerModules.default ];
             home-manager.users.${settings.user.username} = import ./hosts/desktop/home.nix;
           }
         ];

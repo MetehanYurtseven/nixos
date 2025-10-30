@@ -3,7 +3,6 @@
 let
   customPackages = [
     "copilot-api"
-    "vicinae"
   ];
 
   simplePackages = map 

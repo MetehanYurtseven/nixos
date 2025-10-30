@@ -77,7 +77,7 @@ in
 
       exec-once = [
       	"waybar &"  # Waybar Menu Bar
-        "vicinae server &"  # Vicinae Launcher
+        # "vicinae server &"  # Vicinae Launcher
       	"1password --ozone-platform-hint=x11 --silent &"  # 1Password
       	"gsettings set org.gnome.desktop.interface cursor-theme '${settings.cursor.theme}'"  # Fix cursor for GTK apps
       	"gsettings set org.gnome.desktop.interface cursor-size ${toString settings.cursor.size}"  # Fix cursor size for GTK apps

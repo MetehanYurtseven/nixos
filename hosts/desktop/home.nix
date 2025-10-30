@@ -10,6 +10,7 @@
     ../../home/waybar.nix
     ../../home/wallpaper.nix
     ../../home/chromium.nix
+    ../../home/vicinae.nix
     ./hyprland.nix
   ];
 
