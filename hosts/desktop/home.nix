@@ -9,14 +9,13 @@
     ../../home/gtk.nix
     ../../home/waybar.nix
     ../../home/wallpaper.nix
+    ../../home/chromium.nix
     ./hyprland.nix
   ];
 
   home.packages = with pkgs; [
     # System
-    chromium # Internet Browser
     xfce.thunar # File Manager
-    kitty # Terminal
     hyprpolkitagent # PolKit Agent for Hyprland
 
     # Theme
