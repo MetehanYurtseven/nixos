@@ -8,7 +8,7 @@
       height = 24;
       
       modules-left = ["hyprland/workspaces" "tray"];
-      modules-center = ["hyprland/window"];
+      # modules-center = ["hyprland/window"];
       modules-right = ["memory" "cpu" "pulseaudio" "network" "clock"];
       
       "hyprland/workspaces" = {
