@@ -16,6 +16,7 @@ in
         ips = [ "10.0.0.9" ];
         # Nutze verschlüsselte Secrets
         privateKeyFile = config.sops.secrets."wireguard/private_key".path;
+        dynamicEndpointRefreshSeconds = 25;
         peers = [
           {
             publicKey = "m54PyD6ptUetZy17pExI6KnCvLumZEboXfd7YuSDVgA=";
@@ -24,6 +25,7 @@ in
               "10.0.0.0/16"
             ];
             endpoint = "vpn.melthrox.de:51821";
+            persistentKeepalive = 25;
           }
         ];
       };
