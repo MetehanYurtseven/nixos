@@ -18,6 +18,9 @@
     # System
     xfce.thunar # File Manager
     hyprpolkitagent # PolKit Agent for Hyprland
+    jq # JSON processor
+    libnotify # Notifications
+    wl-clipboard # Clipboard für Wayland
 
     # Theme
     rose-pine-gtk-theme # GTK Theme
@@ -29,6 +32,11 @@
     nerd-fonts.mononoki # Mononoki Nerd Font
     nerd-fonts.symbols-only # Symbols Only Nerd Font
     noto-fonts-emoji # Emoji Font
+
+    # Screenshots
+    grim # Screenshot functionality
+    slurp # Region selection
+    grimblast # Hyprland screenshot helper
 
     # General
     code-cursor-fhs # Cursor for VS Code

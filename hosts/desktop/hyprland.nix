@@ -165,17 +165,19 @@ in
       };
 
       bind = [
-        "$mod, Return, exec, $terminal"
-        "$mod, Q, killactive,"
-        "$mod SHIFT, Q, exit,"
-        "$mod, E, exec, $fileManager"
-        "$mod, D, togglefloating,"
-        "$mod, Space, exec, $launcher"
-        "$mod, B, exec, $browser"
-        "$mod, F, fullscreenstate, 2"
-        "CTRL SHIFT, Space, exec, 1password --quick-access"
-        "$mod, R, exec, wofi --show run"
-        "$mod SHIFT, P, exec, gtk-launch ftwa-perplexity"
+        "$mod SHIFT, Q, exit," # Exit Hyprland
+        "$mod, Q, killactive," # Kill Active Window
+        "$mod, D, togglefloating," # Toggle Floating
+        "$mod, E, exec, $fileManager" # File Manager
+        "$mod, Return, exec, $terminal" # Terminal
+        "$mod, Space, exec, $launcher" # Launcher
+        "$mod, B, exec, $browser" # Browser
+        "$mod, F, fullscreenstate, 2" # Fullscreen
+
+        "CTRL SHIFT, Space, exec, 1password --quick-access" # 1Password Quick Access
+        ", Print, exec, grimblast copysave area ~/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg" # Screenshots
+        "$mod, V, exec, xdg-open vicinae://extensions/vicinae/clipboard/history" # Vicinae Clipboard History
+        "$mod, R, exec, xdg-open vicinae://extensions/vicinae/system/run" # Vicinae Run
 
         "$mod, P, togglespecialworkspace, pass"
         "$mod, M, togglespecialworkspace, music"

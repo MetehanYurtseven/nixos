@@ -21,7 +21,7 @@ in
       theme.name = "rose-pine";
       faviconService = "twenty";
       closeOnFocusLoss = false;
-      rootSearch.searchFiles = false;
+      rootSearch.searchFiles = true;
     };
   };
 }
