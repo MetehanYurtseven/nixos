@@ -67,14 +67,7 @@ in
     text = settings.user.sshKey;
     mode = "0444";  # Read-only für alle
   };
-
-  # GNOME Keyring für 2FA Token Persistence (funktioniert standalone)
-  services.gnome.gnome-keyring.enable = true;
   
-  # PAM Integration für automatisches Keyring-Unlock beim Login
-  security.pam.services.login.enableGnomeKeyring = true;
-  security.pam.services.greetd.enableGnomeKeyring = true;  # Für Display Manager
-
   # XDG Portal für bessere Wayland/Hyprland Integration
   xdg.portal = {
     enable = true;

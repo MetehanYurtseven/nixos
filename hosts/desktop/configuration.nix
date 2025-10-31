@@ -35,6 +35,7 @@ in
     ../../system/neovim.nix
     ../../system/1password.nix
     ../../system/audio.nix
+    ../../system/ly.nix
   ];
 
   sops = {
