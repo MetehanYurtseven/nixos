@@ -5,7 +5,7 @@ let
 in
 {
   users = {
-    defaultUserShell = pkgs.zsh;
+    defaultUserShell = pkgs.xonsh;
     users.${settings.user.username} = {
       isNormalUser = true;
       extraGroups = [ "wheel" ];

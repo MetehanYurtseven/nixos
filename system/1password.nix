@@ -119,12 +119,12 @@ in
     # - Lokal (Hyprland): 1Password Agent aktiv
     # - SSH ohne ForwardAgent: Kein Agent → sudo Passwort-Fallback
     # - SSH mit ForwardAgent: Forwarded Agent bleibt aktiv
-    programs.zsh.initContent = ''
-      # SSH_AUTH_SOCK nur in lokalen Sessions setzen (nicht bei SSH)
-      if [ -z "$SSH_CONNECTION" ]; then
-        export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
-      fi
-    '';
+    # programs.zsh.initContent = ''
+    #   # SSH_AUTH_SOCK nur in lokalen Sessions setzen (nicht bei SSH)
+    #   if [ -z "$SSH_CONNECTION" ]; then
+    #     export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+    #   fi
+    # '';
 
     # Git SSH Signing
     programs.git = {

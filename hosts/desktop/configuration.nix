@@ -31,7 +31,7 @@ in
     ../../system/environment.nix
     ../../system/security.nix
     ../../system/tmpfiles.nix
-    ../../system/zsh.nix
+    ../../system/xonsh.nix
     ../../system/neovim.nix
     ../../system/1password.nix
     ../../system/audio.nix
