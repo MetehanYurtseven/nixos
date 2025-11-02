@@ -35,6 +35,9 @@ in
       shell_integration = "enabled";
       listen_on = "unix:/tmp/kitty";
       term = "xterm-256color";
+      
+      # Close confirmation komplett deaktiviert
+      confirm_os_window_close = 0;
 
       # Theme: Rosé Pine
       foreground = "#e0def4";
