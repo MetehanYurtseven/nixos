@@ -115,16 +115,7 @@ in
       };
     };
 
-    # SSH_AUTH_SOCK: Conditional setzen (nur in lokalen Sessions)
-    # - Lokal (Hyprland): 1Password Agent aktiv
-    # - SSH ohne ForwardAgent: Kein Agent → sudo Passwort-Fallback
-    # - SSH mit ForwardAgent: Forwarded Agent bleibt aktiv
-    # programs.zsh.initContent = ''
-    #   # SSH_AUTH_SOCK nur in lokalen Sessions setzen (nicht bei SSH)
-    #   if [ -z "$SSH_CONNECTION" ]; then
-    #     export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
-    #   fi
-    # '';
+    # SSH_AUTH_SOCK: Wird in system/xonsh.nix gesetzt
 
     # Git SSH Signing
     programs.git = {
