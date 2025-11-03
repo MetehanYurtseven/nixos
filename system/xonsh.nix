@@ -11,7 +11,7 @@
       $VI_MODE=True
       $AUTO_CD = True
       $XONSH_HISTORY_BACKEND = 'sqlite'
-      $COMPLETIONS_CONFIRM = True
+      # $COMPLETIONS_CONFIRM = True
       
       # Aliase aus zsh-Config
       aliases.update({
