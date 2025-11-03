@@ -4,16 +4,12 @@
     
     config = ''
       import os
-      if 'SSH_TTY' not in os.environ:
-          $SSH_AUTH_SOCK = $HOME + "/.1password/agent.sock"
 
       $XONSH_CAPTURE_ALWAYS=True
       $VI_MODE=True
       $AUTO_CD = True
       $XONSH_HISTORY_BACKEND = 'sqlite'
-      # $COMPLETIONS_CONFIRM = True
       
-      # Aliase aus zsh-Config
       aliases.update({
           # Navigation
           'cd': ['z'],
@@ -33,6 +29,9 @@
           'switch': ['sudo', 'nixos-rebuild', 'switch'],
           'test': ['sudo', 'nixos-rebuild', 'test']
       })
+
+      if 'SSH_TTY' not in os.environ:
+          $SSH_AUTH_SOCK = $HOME + "/.1password/agent.sock"
     '';
   };
 

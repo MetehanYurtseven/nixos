@@ -12,12 +12,6 @@ in
       "$launcher" = "vicinae toggle";
       "$browser" = settings.applications.browser;
       "$pass" = "1password";
-      "$music" = "youtube-music";
-      "$wiki" = "gtk-launch slite";
-      "$whatsapp" = "gtk-launch whatsapp";
-      "$teams" = "gtk-launch microsoft-teams";
-      "$outlook" = "gtk-launch outlook";
-      "$ha" = "gtk-launch home-assistant";
 
       "$base" = "0xff191724";
       "$surface" = "0xff1f1d2e";
@@ -66,13 +60,7 @@ in
       	"8, monitor:DP-3"
       	"9, monitor:DP-3"
       	"0, monitor:DP-3"
-      	"special:music, on-created-empty:$music"
       	"special:pass, on-created-empty:$pass"
-      	"special:wiki, on-created-empty:$wiki"
-      	"special:whatsapp, on-created-empty:$whatsapp"
-      	"special:teams, on-created-empty:$teams"
-      	"special:outlook, on-created-empty:$outlook"
-      	"special:ha, on-created-empty:$ha"
       ];
 
       exec-once = [
@@ -179,13 +167,7 @@ in
         "$mod, V, exec, xdg-open vicinae://extensions/vicinae/clipboard/history" # Vicinae Clipboard History
         "$mod, R, exec, xdg-open vicinae://extensions/vicinae/system/run" # Vicinae Run
 
-        "$mod, P, togglespecialworkspace, pass"
-        "$mod, M, togglespecialworkspace, music"
-        "$mod, N, togglespecialworkspace, wiki"
-        "$mod, W, togglespecialworkspace, whatsapp"
-        "$mod, T, togglespecialworkspace, teams"
-        "$mod, O, togglespecialworkspace, outlook"
-        "$mod, A, togglespecialworkspace, ha"
+        "$mod, P, togglespecialworkspace, pass" # Toggle 1Password Workspace
 
         "$mod, h, movefocus, l"
         "$mod, l, movefocus, r"
@@ -259,41 +241,9 @@ in
         "center, title:(1Password)"
         "stayfocused, title:(Quick Access - 1Password)"
 
-        "float, title:(Volume Control)"
-        "size 50% 50%, title:(Volume Control)"
-        "center, title:(Volume Control)"
-
-        "float, title:(YouTube Music)"
-        "size 70% 70%, title:(YouTube Music)"
-        "center, title:(YouTube Music)"
-
-        "float, class:(chrome-teams.microsoft.com__-Default)"
-        "size 70% 70%, class:(chrome-teams.microsoft.com__-Default)"
-        "center, class:(chrome-teams.microsoft.com__-Default"
-
-        "float, class:(chrome-outlook.office.com__-Default)"
-        "size 80% 80%, class:(chrome-outlook.office.com__-Default)"
-        "center, class:(chrome-outlook.office.com__-Default)"
-
-        "float, class:(chrome-home.melthrox.de__-Default)"
-        "size 63% 70%, class:(chrome-home.melthrox.de__-Default)"
-        "center, class:(chrome-home.melthrox.de__-Default)"
-
-        "float, class:(chrome-web.whatsapp.com__-Default)"
-        "size 70% 70%, class:(chrome-web.whatsapp.com__-Default)"
-        "center, class:(chrome-web.whatsapp.com__-Default)"
-
         "float, title:(Qalculate!)"
         "size 40% 50%, title:(Qalculate!)"
         "center, title:(Qalculate!)"
-
-        "float, class:(chrome-itsolutions-gg.slite.com__app-Default)"
-        "size 80% 80%, class:(chrome-itsolutions-gg.slite.com__app-Default)"
-        "center, class:(chrome-itsolutions-gg.slite.com__app-Default)"
-
-        "float, title:(Waypaper)"
-        "size 30% 50%, title:(Waypaper)"
-        "center, title:(Waypaper)"
       ];
     };
   };
