@@ -27,15 +27,15 @@
   # ⌨️ INPUT
   input = {
     keyboardLayout = "de";
-    modifierKey = "SUPER"; # Default: SUPER
-    mouseSensitivity = 0; # Default: 0
+    modifierKey = "SUPER";
+    mouseSensitivity = 0;
   };
 
   # 💻 APPLICATIONS
   applications = {
-    terminal = "kitty"; # Default: kitty
-    fileManager = "thunar"; # Default: thunar
-    browser = "chromium --disable-features=WaylandWpColorManagerV1"; # Default: chromium
+    terminal = "kitty";
+    fileManager = "thunar";
+    browser = "chromium";
   };
 
   # 🖼 WALLPAPER
