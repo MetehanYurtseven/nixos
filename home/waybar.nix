@@ -1,4 +1,11 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, waybar-nixos-updates, ... }: {
+  imports = [ waybar-nixos-updates.homeManagerModules.default ];
+  
+  programs.waybar-nixos-updates = {
+    enable = true;
+    nixosConfigPath = "/etc/nixos";
+  };
+
   programs.waybar = {
     enable = true;
     
@@ -9,7 +16,7 @@
       
       modules-left = ["hyprland/workspaces" "tray"];
       # modules-center = ["hyprland/window"];
-      modules-right = ["memory" "cpu" "pulseaudio" "network" "clock"];
+      modules-right = ["custom/nix-updates" "memory" "cpu" "pulseaudio" "network" "clock"];
       
       "hyprland/workspaces" = {
         active-only = false;
@@ -55,6 +62,8 @@
         };
         on-click = "pwvucontrol";
       };
+      
+      "custom/nix-updates" = config.programs.waybar-nixos-updates.waybarConfig;
     }];
     
     style = ''
@@ -89,7 +98,7 @@
         background: transparent;
       }
       
-      #clock, #cpu, #memory, #network, #pulseaudio, #tray, #workspaces, #window {
+      #clock, #cpu, #memory, #network, #pulseaudio, #tray, #workspaces, #window, #custom-nix-updates {
         background: rgba(25, 23, 36, 0.8);
         border: 1px solid @muted;
         padding: 4px 10px;

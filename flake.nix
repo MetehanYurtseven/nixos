@@ -21,9 +21,11 @@
     };
 
     vicinae.url = "github:vicinaehq/vicinae";
+    
+    waybar-nixos-updates.url = "github:guttermonk/waybar-nixos-updates";
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, vicinae, ... }:
+  outputs = { self, nixpkgs, home-manager, sops-nix, vicinae, waybar-nixos-updates, ... }:
     let
       settings = import ./settings.nix;
     in
@@ -38,6 +40,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.sharedModules = [ vicinae.homeManagerModules.default ];
+            home-manager.extraSpecialArgs = { inherit waybar-nixos-updates; };
             home-manager.users.${settings.user.username} = import ./hosts/desktop/home.nix;
           }
         ];
