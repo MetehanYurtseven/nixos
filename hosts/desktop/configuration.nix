@@ -25,6 +25,7 @@ in
     ../../system/security.nix
     ../../system/tmpfiles.nix
     ../../system/xonsh.nix
+    ../../system/direnv.nix
     ../../system/neovim.nix
     ../../system/1password.nix
     ../../system/audio.nix
