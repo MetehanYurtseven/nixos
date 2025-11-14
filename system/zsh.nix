@@ -32,7 +32,7 @@
 
     interactiveShellInit = ''
       pkgs() {
-        local file="/etc/nixos/pkgs"
+        local file="/etc/nixos/extra-packages.nix"
         local hash_before=$(sha256sum "$file" | awk '{print $1}')
         
         ''${EDITOR:-vim} "$file"
@@ -44,7 +44,7 @@
           
           echo "Committing to git..."
           cd /etc/nixos
-          git add pkgs 2>/dev/null
+          git add extra-packages.nix 2>/dev/null
           git commit -q -m "packages updated" 2>/dev/null || echo "⚠️  Git commit failed"
           
           echo "Applying configuration..."

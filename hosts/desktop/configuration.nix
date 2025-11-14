@@ -1,16 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, aish, ... }:
 
 let
   customPackages = [
     "copilot-api"
   ];
-
-  simplePackages = map 
-    (name: pkgs.${name}) 
-    (builtins.filter 
-      (line: line != "" && !(lib.hasPrefix "#" line))
-      (lib.splitString "\n" (builtins.readFile ../../pkgs))
-    );
 
   complexPackages = map 
     (name: pkgs.callPackage ../../packages/${name}.nix { })
@@ -36,6 +29,7 @@ in
     ../../system/1password.nix
     ../../system/audio.nix
     ../../system/ly.nix
+    ../../extra-packages.nix
   ];
 
   sops = {
@@ -54,7 +48,9 @@ in
 
   programs.dconf.enable = true;
 
-  environment.systemPackages = simplePackages ++ complexPackages;
+  environment.systemPackages = complexPackages ++ [
+    aish.packages.x86_64-linux.default
+  ];
 
   system.stateVersion = "25.05";
 }

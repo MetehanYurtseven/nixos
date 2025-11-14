@@ -21,15 +21,21 @@
     };
 
     vicinae.url = "github:vicinaehq/vicinae";
+    
+    aish = {
+      url = "git+file:/home/metehan.yurtseven/repos/aish?ref=master&shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, vicinae, ... }:
+  outputs = { self, nixpkgs, home-manager, sops-nix, vicinae, aish, ... }:
     let
       settings = import ./settings.nix;
     in
     {
       nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit aish; };
         modules = [
           ./hosts/desktop/configuration.nix # NixOS Configuration
           sops-nix.nixosModules.sops # Sops for NixOS

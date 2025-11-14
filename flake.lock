@@ -1,5 +1,28 @@
 {
   "nodes": {
+    "aish": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pyproject-nix": "pyproject-nix"
+      },
+      "locked": {
+        "lastModified": 1762967792,
+        "narHash": "sha256-bqRYo8WPprVaLC/Hft30BWDoIuXFJ8M7h2kzav4V90g=",
+        "ref": "master",
+        "rev": "9ab5800bcbe49f52a0035ca20aac7fb490c130dc",
+        "shallow": true,
+        "type": "git",
+        "url": "file:/home/metehan.yurtseven/repos/aish"
+      },
+      "original": {
+        "ref": "master",
+        "shallow": true,
+        "type": "git",
+        "url": "file:/home/metehan.yurtseven/repos/aish"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -70,8 +93,30 @@
         "type": "github"
       }
     },
+    "pyproject-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "aish",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762427963,
+        "narHash": "sha256-CkPlAbIQ87wmjy5qHibfzk4DmMGBNqFer+lLfXjpP5M=",
+        "owner": "pyproject-nix",
+        "repo": "pyproject.nix",
+        "rev": "4540ea004e04fcd12dd2738d51383d10f956f7b9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pyproject-nix",
+        "repo": "pyproject.nix",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "aish": "aish",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix",
