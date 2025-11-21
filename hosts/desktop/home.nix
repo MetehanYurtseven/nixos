@@ -31,7 +31,7 @@
     nerd-fonts.hack # Hack Nerd Font
     nerd-fonts.mononoki # Mononoki Nerd Font
     nerd-fonts.symbols-only # Symbols Only Nerd Font
-    noto-fonts-emoji # Emoji Font
+    noto-fonts-color-emoji # Emoji Font
 
     # Screenshots
     grim # Screenshot functionality
