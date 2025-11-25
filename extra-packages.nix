@@ -9,5 +9,6 @@
     nmap
     btop
     htop
+    thunderbird
   ];
 }
