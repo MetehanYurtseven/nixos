@@ -20,12 +20,14 @@
       $VI_MODE=True
       $AUTO_CD = True
       $XONSH_HISTORY_BACKEND = 'sqlite'
+
+      $PAGER = 'nvimpager'
       
       aliases.update({
           # Navigation
           'cd': ['z'],
           
-          # ls-basierte Aliase
+          # ls Aliase
           'ls': ['lsd'],
           'sl': ['lsd'],
           'l': ['lsd'],
@@ -33,12 +35,17 @@
           'la': ['lsd', '-lA'],
           'lt': ['lsd', '-l', '--tree', '--depth', '3'],
           'tree': ['lsd', '--tree'],
+
+          # git aliases
+          'gs': ['git', 'status'],
+          'ga': ['git', 'add'],
+          'gc': ['git', 'commit'],
           
-          # NixOS System-Aliase
-          'update': ['sudo', 'nixos-rebuild', 'switch', '--recreate-lock-file', '--flake', '/etc/nixos'],
-          'clean': ['bash', '-c', 'sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d && sudo nix-collect-garbage --delete-old'],
+          # nixos aliases
+          'update': ['sudo', 'nix', 'flake', 'update', '--flake', '/etc/nixos'],
           'switch': ['sudo', 'nixos-rebuild', 'switch'],
-          'test': ['sudo', 'nixos-rebuild', 'test']
+          'test': ['sudo', 'nixos-rebuild', 'test'],
+          # 'clean': ['sudo'] # TODO clean cache
       })
 
       if 'SSH_TTY' not in os.environ:

@@ -34,7 +34,7 @@
   # 💻 APPLICATIONS
   applications = {
     terminal = "kitty";
-    fileManager = "thunar";
+    fileManager = "nemo";
     browser = "chromium";
   };
 

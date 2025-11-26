@@ -16,8 +16,7 @@
 
   home.packages = with pkgs; [
     # System
-    xfce.thunar # File Manager
-    hyprpolkitagent # PolKit Agent for Hyprland
+    nemo # File Manager
     jq # JSON processor
     libnotify # Notifications
     wl-clipboard # Clipboard für Wayland

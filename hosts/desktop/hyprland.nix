@@ -4,6 +4,10 @@ let
   settings = import ../../settings.nix;
 in
 {
+  home.packages = with pkgs; [
+    hyprpolkitagent # PolKit Agent for Hyprland
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -65,7 +69,6 @@ in
 
       exec-once = [
       	"waybar &"  # Waybar Menu Bar
-        # "vicinae server &"  # Vicinae Launcher
       	"1password --ozone-platform-hint=x11 --silent &"  # 1Password
       	"gsettings set org.gnome.desktop.interface cursor-theme '${settings.cursor.theme}'"  # Fix cursor for GTK apps
       	"gsettings set org.gnome.desktop.interface cursor-size ${toString settings.cursor.size}"  # Fix cursor size for GTK apps
@@ -156,11 +159,12 @@ in
         "$mod SHIFT, Q, exit," # Exit Hyprland
         "$mod, Q, killactive," # Kill Active Window
         "$mod, D, togglefloating," # Toggle Floating
+        "$mod, F, fullscreenstate, 2" # Fullscreen
+
         "$mod, E, exec, $fileManager" # File Manager
         "$mod, Return, exec, $terminal" # Terminal
         "$mod, Space, exec, $launcher" # Launcher
         "$mod, B, exec, $browser" # Browser
-        "$mod, F, fullscreenstate, 2" # Fullscreen
 
         "CTRL SHIFT, Space, exec, 1password --quick-access" # 1Password Quick Access
         ", Print, exec, grimblast copysave area ~/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg" # Screenshots

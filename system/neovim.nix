@@ -1,8 +1,10 @@
 { config, lib, pkgs, ... }: {
   programs.neovim = {
     enable = true;
+
     defaultEditor = true;
     vimAlias = true;
+
     configure = {
       customRC = ''
         set relativenumber
@@ -13,5 +15,9 @@
       '';
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    nvimpager
+  ];
 }
 
