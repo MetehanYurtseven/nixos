@@ -9,6 +9,7 @@
     ../../home/gtk.nix
     ../../home/waybar.nix
     ../../home/wallpaper.nix
+    ../../home/hypridle.nix
     ../../home/chromium.nix
     ../../home/vicinae.nix
     ./hyprland.nix
