@@ -40,6 +40,7 @@
           'gs': ['git', 'status'],
           'ga': ['git', 'add'],
           'gc': ['git', 'commit'],
+          'gp': ['git', 'push'],
           
           # nixos aliases
           'update': ['sudo', 'nix', 'flake', 'update', '--flake', '/etc/nixos'],
