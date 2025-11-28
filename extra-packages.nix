@@ -10,5 +10,6 @@
     btop
     htop
     thunderbird
+    p7zip
   ];
 }
