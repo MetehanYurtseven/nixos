@@ -9,7 +9,7 @@ in
     autoStart = true;
     settings = {
       font = {
-        normal = settings.appearance.font;
+        normal = settings.appearance.displayFont;
         size = 12;
       };
       window = {

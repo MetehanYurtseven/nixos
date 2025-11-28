@@ -9,10 +9,10 @@ in
 
     # Fonts
     settings = {
-      font_family = settings.appearance.font;
-      bold_font = "${settings.appearance.font} Heavy";
-      italic_font = "${settings.appearance.font} Italic";
-      bold_italic_font = "${settings.appearance.font} Heavy Italic";
+      font_family = settings.appearance.monospaceFont;
+      bold_font = "${settings.appearance.monospaceFont} Heavy";
+      italic_font = "${settings.appearance.monospaceFont} Italic";
+      bold_italic_font = "${settings.appearance.monospaceFont} Heavy Italic";
       font_size = 12;
 
       # Cursor

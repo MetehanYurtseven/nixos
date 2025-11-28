@@ -24,7 +24,7 @@ in
     };
 
     font = {
-      name = settings.appearance.font;
+      name = settings.appearance.displayFont;
       size = 12;
     };
   };

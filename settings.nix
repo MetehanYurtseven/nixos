@@ -14,7 +14,8 @@
 
   # 🎨 APPEARANCE
   appearance = {
-    font = "SFMono Nerd Font"; # SF Mono Nerd Font (monospaced)
+    displayFont = "SFProDisplay Nerd Font";
+    monospaceFont = "SFMono Nerd Font";
   };
 
   # 🖱️ CURSOR

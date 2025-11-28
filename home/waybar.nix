@@ -29,31 +29,31 @@ in
       
       clock = {
         interval = 1;
-        format = "{:%d.%m.%Y %H:%M:%S}";
+        format = "󰃭   {:%d.%m.%Y      %H:%M:%S}";
       };
       
       memory = {
         interval = 1;
-        format = "  {used:0.1f}G/{total:0.1f}G";
+        format = "   {used:0.1f}G / {total:0.1f}G";
         on-click = "kitty htop --sort-key=PERCENT_MEM";
       };
 
       cpu = {
         interval = 1;
-        format = "  {usage}%";
+        format = "   {usage}%";
         on-click = "kitty htop --sort-key=PERCENT_CPU";
       };
       
       network = {
-        format-wifi = "  {ipaddr}";
-        format-ethernet = "  {ipaddr}";
-        format-disconnected = "  Disconnected";
+        format-wifi = "   {ipaddr}";
+        format-ethernet = "   {ipaddr}";
+        format-disconnected = "   Disconnected";
       };
       
       pulseaudio = {
         scroll-step = 5;
-        format = "{icon}  {volume}%";
-        format-bluetooth = "{icon}  {volume}%";
+        format = "{icon}   {volume}%";
+        format-bluetooth = "{icon}   {volume}%";
         format-muted = "";
         format-icons = {
           default = ["" "" ""];
@@ -85,7 +85,7 @@ in
       * {
         border: none;
         border-radius: 0;
-        font-family: "${settings.appearance.font}";
+        font-family: "${settings.appearance.displayFont}";
         font-size: 15px;
         min-height: 0;
       }
