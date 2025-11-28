@@ -14,7 +14,7 @@
 
   # 🎨 APPEARANCE
   appearance = {
-    font = "Mononoki Nerd Font"; # Default: Mononoki Nerd Font
+    font = "SFMono Nerd Font"; # SF Mono Nerd Font (monospaced)
   };
 
   # 🖱️ CURSOR

@@ -46,6 +46,15 @@
             home-manager.sharedModules = [ vicinae.homeManagerModules.default ];
             home-manager.users.${settings.user.username} = import ./hosts/desktop/home.nix;
           }
+          # Custom packages overlay
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                sf-mono-nerd-font = final.callPackage ./pkgs/sf-mono-nerd-font {};
+                sf-pro-nerd-font = final.callPackage ./pkgs/sf-pro-nerd-font {};
+              })
+            ];
+          }
         ];
       };
     };

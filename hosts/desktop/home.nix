@@ -32,6 +32,8 @@
     nerd-fonts.mononoki # Mononoki Nerd Font
     nerd-fonts.symbols-only # Symbols Only Nerd Font
     noto-fonts-color-emoji # Emoji Font
+    sf-mono-nerd-font # SF Mono Nerd Font (monospaced)
+    sf-pro-nerd-font # SF Pro Nerd Font (proportional)
 
     # Screenshots
     grim # Screenshot functionality

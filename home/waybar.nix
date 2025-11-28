@@ -1,4 +1,9 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+
+let
+  settings = import ../settings.nix;
+in
+{
   programs.waybar = {
     enable = true;
     
@@ -80,7 +85,7 @@
       * {
         border: none;
         border-radius: 0;
-        font-family: "Mononoki Nerd Font";
+        font-family: "${settings.appearance.font}";
         font-size: 15px;
         min-height: 0;
       }
