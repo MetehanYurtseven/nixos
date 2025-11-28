@@ -17,7 +17,7 @@
 
   home.packages = with pkgs; [
     # System
-    nemo # File Manager
+    nemo-with-extensions # File Manager mit Extensions
     jq # JSON processor
     libnotify # Notifications
     wl-clipboard # Clipboard für Wayland
