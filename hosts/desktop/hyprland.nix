@@ -70,7 +70,7 @@ in
       exec-once = [
       	"waybar &"  # Waybar Menu Bar
       	"1password --ozone-platform-hint=x11 --silent &"  # 1Password
-        "exec-once = steam -silent -no-browser &" # Steam
+        "steam -silent &" # Steam
       	"gsettings set org.gnome.desktop.interface cursor-theme '${settings.cursor.theme}'"  # Fix cursor for GTK apps
       	"gsettings set org.gnome.desktop.interface cursor-size ${toString settings.cursor.size}"  # Fix cursor size for GTK apps
       	"gsettings set org.gnome.desktop.interface icon-theme 'rose-pine'"  # Fix icons for GTK apps
