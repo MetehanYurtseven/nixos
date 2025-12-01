@@ -42,6 +42,10 @@
 
     # General
     code-cursor-fhs # Cursor for VS Code
+
+    # Gaming
+    wineWowPackages.stagingFull
+    winetricks
   ];
 
   home.stateVersion = "18.09";
