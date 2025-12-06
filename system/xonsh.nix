@@ -46,7 +46,7 @@
           'update': ['sudo', 'nix', 'flake', 'update', '--flake', '/etc/nixos'],
           'switch': ['sudo', 'nixos-rebuild', 'switch'],
           'test': ['sudo', 'nixos-rebuild', 'test'],
-          'clean': ['sudo', 'nixos-collect-garbage']
+          'clean': ['sudo', 'nix-collect-garbage']
       })
 
       if 'SSH_TTY' not in os.environ:
@@ -60,7 +60,7 @@
   };
   
   environment.systemPackages = with pkgs; [
-    fzf  # Benötigt für xontrib-fzf-widgets
+    fzf
     lsd
   ];
 }
