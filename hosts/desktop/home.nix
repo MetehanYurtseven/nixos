@@ -2,7 +2,6 @@
   imports = [
     ../../home/xdg.nix
     ../../home/git.nix
-    # ../../home/zsh.nix
     ../../home/neovim.nix
     ../../home/kitty.nix
     ../../home/fonts.nix
