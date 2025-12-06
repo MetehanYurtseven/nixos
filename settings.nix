@@ -14,7 +14,7 @@
 
   # 🎨 APPEARANCE
   appearance = {
-    displayFont = "SFProDisplay Nerd Font";
+    displayFont = "SFRounded Nerd Font";
     monospaceFont = "SFMono Nerd Font";
   };
 
@@ -41,7 +41,8 @@
 
   # 🖼 WALLPAPER
   wallpaper = {
-    path = "/home/metehan.yurtseven/pictures/wallpapers/into-the-woods-5120x1440.jpg";
+    # this is a symlink to the current wallpaper set using 'set-wallpaper' defined in wallpaper.nix
+    path = "/home/metehan.yurtseven/pictures/wallpapers/current.png";
   };
 }
 
