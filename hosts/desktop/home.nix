@@ -20,6 +20,7 @@
     jq # JSON processor
     libnotify # Notifications
     wl-clipboard # Clipboard für Wayland
+    qalculate-gtk # Calculator
 
     # Theme
     rose-pine-gtk-theme # GTK Theme

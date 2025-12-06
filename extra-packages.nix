@@ -11,5 +11,6 @@
     htop
     thunderbird
     p7zip
+    gimp-with-plugins
   ];
 }

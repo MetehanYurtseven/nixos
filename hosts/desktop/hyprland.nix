@@ -247,7 +247,7 @@ in
         "stayfocused, title:(Quick Access - 1Password)"
 
         "float, title:(Qalculate!)"
-        "size 40% 50%, title:(Qalculate!)"
+        "size 0% 0%, title:(Qalculate!)"
         "center, title:(Qalculate!)"
       ];
     };
@@ -255,4 +255,3 @@ in
 
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 }
-
