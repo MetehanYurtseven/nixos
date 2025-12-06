@@ -24,8 +24,8 @@
       $PAGER = 'nvimpager'
       
       aliases.update({
-          # Navigation
           'cd': ['z'],
+          'open': ['xdg-open'],
           
           # ls Aliase
           'ls': ['lsd'],
