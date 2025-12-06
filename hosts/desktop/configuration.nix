@@ -13,6 +13,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./wifi.nix
+    ./bluetooth.nix
     ./boot.nix
     ./networking.nix
     ./hardware.nix
