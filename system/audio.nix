@@ -1,23 +1,31 @@
 { config, pkgs, ... }: {
+  services.avahi.enable = true; # Avahi for AirPlay
+  security.rtkit.enable = true; # RealtimeKit
+
   services.pipewire = {
     enable = true;
 
     pulse.enable = true;
-    jack.enable = false;
     wireplumber.enable = true;
     
     alsa = {
       enable = true;
       support32Bit = true;
     };
+
+    extraConfig.pipewire = {
+      "10-airplay" = {
+        "context.modules" = [
+          {
+            name = "libpipewire-module-roap-discover";
+          }
+        ];
+      };
+    };
   };
-  
-  # RealtimeKit
-  security.rtkit.enable = true;
   
   environment.systemPackages = with pkgs; [
     pwvucontrol # PipeWire Volume Control
     playerctl # Media Player Control
   ];
 }
-
