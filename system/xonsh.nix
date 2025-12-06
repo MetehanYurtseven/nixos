@@ -16,10 +16,22 @@
       $fzf_file_binding = "c-t"
       $fzf_dir_binding = "c-g"
 
-      $XONSH_CAPTURE_ALWAYS=True
-      $VI_MODE=True
+      $XONSH_CAPTURE_ALWAYS = True
+      $VI_MODE = True
       $AUTO_CD = True
       $XONSH_HISTORY_BACKEND = 'sqlite'
+      $HISTCONTROL = 'ignoredups'
+      $XONSH_HISTORY_SIZE = (10000, 'commands')
+
+      $ENABLE_ASYNC_PROMPT = True
+      $COMPLETION_IN_THREAD = True
+      $COMPLETIONS_CONFIRM = True
+      $CASE_SENSITIVE_COMPLETIONS = False
+      $AUTO_SUGGEST = True
+
+      $COLOR_RESULTS = True
+      $XONSH_STORE_STDOUT = True
+      $UPDATE_OS_ENVIRON = True
 
       $PAGER = 'nvimpager'
       
