@@ -4,9 +4,9 @@ let
   settings = import ../settings.nix;
 in
 {
-  services.vicinae = {
+  programs.vicinae = {
     enable = true;
-    autoStart = true;
+    systemd.enable = true;
     settings = {
       font = {
         normal = settings.appearance.displayFont;
