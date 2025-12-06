@@ -85,7 +85,7 @@ in
       * {
         border: none;
         border-radius: 0;
-        font-family: "${settings.appearance.displayFont}";
+        font-family: "${settings.appearance.displayFont} Medium";
         font-size: 15px;
         min-height: 0;
       }
@@ -129,11 +129,5 @@ in
       }
     '';
   };
-  
-  # pwvucontrol wird über system/audio.nix installiert
-  # Hier können zusätzliche Audio-Tools hinzugefügt werden
-  home.packages = with pkgs; [
-    # Audio-Tools sind bereits im System verfügbar
-  ];
 }
 
