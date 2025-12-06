@@ -43,7 +43,7 @@
           'gp': ['git', 'push'],
           
           # nixos aliases
-          'update': ['_update'],
+          'update': ['nix', 'flake', 'update', '--flake', '/etc/nixos'],
           'switch': ['sudo', 'nixos-rebuild', 'switch'],
           'test': ['sudo', 'nixos-rebuild', 'test'],
           'clean': ['sudo', 'nix-collect-garbage']
@@ -62,33 +62,5 @@
   environment.systemPackages = with pkgs; [
     fzf
     lsd
-
-    # Function to update the system
-    (writeShellScriptBin "_update" ''
-      set -e
-      FLAKE_DIR="/etc/nixos"
-      
-      changes=$(git -C "$FLAKE_DIR" status --porcelain)
-      
-      if [ -n "$changes" ]; then
-          git -C "$FLAKE_DIR" stash push --include-untracked -m "temp: before flake update"
-      fi
-      
-      cleanup() {
-          if [ -n "$changes" ]; then
-              git -C "$FLAKE_DIR" stash pop
-          fi
-      }
-      trap cleanup EXIT INT TERM
-      
-      nix flake update --flake "$FLAKE_DIR"
-      
-      if ! git -C "$FLAKE_DIR" diff --quiet flake.lock; then
-          git -C "$FLAKE_DIR" add flake.lock
-          git -C "$FLAKE_DIR" commit -m "flake update"
-      fi
-
-      sudo nixos-rebuild switch
-    '')
   ];
 }
