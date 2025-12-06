@@ -249,6 +249,10 @@ in
         "float, title:(Qalculate!)"
         "size 0% 0%, title:(Qalculate!)"
         "center, title:(Qalculate!)"
+
+        "float, title:(Bluetooth Devices)"
+        "size 30% 50%, title:(Bluetooth Devices)"
+        "center, title:(Bluetooth Devices)"
       ];
     };
   };
