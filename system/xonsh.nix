@@ -46,7 +46,7 @@
           'update': ['sudo', 'nix', 'flake', 'update', '--flake', '/etc/nixos'],
           'switch': ['sudo', 'nixos-rebuild', 'switch'],
           'test': ['sudo', 'nixos-rebuild', 'test'],
-          # 'clean': ['sudo'] # TODO clean cache
+          'clean': ['sudo', 'nixos-collect-garbage']
       })
 
       if 'SSH_TTY' not in os.environ:

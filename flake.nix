@@ -29,15 +29,14 @@
         system = "x86_64-linux";
         specialArgs = { inherit aish; };
         modules = [
-          ./hosts/desktop/configuration.nix # NixOS Configuration
-          sops-nix.nixosModules.sops # Sops for NixOS
-          home-manager.nixosModules.home-manager # Home Manager for NixOS
-          { # Home Manager Configuration
+          ./hosts/desktop/configuration.nix
+          sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager
+          {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${settings.user.username} = import ./hosts/desktop/home.nix;
           }
-          # Custom packages overlay
           {
             nixpkgs.overlays = [
               (final: prev: {
