@@ -17,7 +17,7 @@
       "10-airplay" = {
         "context.modules" = [
           {
-            name = "libpipewire-module-roap-discover";
+            name = "libpipewire-module-raop-discover";
           }
         ];
       };
