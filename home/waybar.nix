@@ -7,6 +7,7 @@ in
   programs.waybar = {
     enable = true;
     systemd.enable = true;
+    systemd.target = "hyprland-session.target";
     
     settings = [{
       layer = "top";
