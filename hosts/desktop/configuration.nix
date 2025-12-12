@@ -27,7 +27,7 @@ in
     ../../system/tmpfiles.nix
     ../../system/xonsh.nix
     ../../system/direnv.nix
-    ../../system/neovim.nix
+    ../../system/nixvim.nix
     ../../system/1password.nix
     ../../system/audio.nix
     ../../system/ly.nix

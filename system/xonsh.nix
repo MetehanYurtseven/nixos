@@ -33,8 +33,6 @@
       $XONSH_STORE_STDOUT = True
       $UPDATE_OS_ENVIRON = True
 
-      $PAGER = 'nvimpager'
-      
       aliases.update({
           'cd': ['z'],
           'open': ['xdg-open'],

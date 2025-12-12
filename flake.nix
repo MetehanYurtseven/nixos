@@ -18,9 +18,14 @@
       url = "git+file:/home/metehan.yurtseven/repos/aish?ref=master&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, aish, ... }:
+  outputs = { self, nixpkgs, home-manager, sops-nix, aish, nixvim, ... }:
     let
       settings = import ./settings.nix;
     in
@@ -32,6 +37,7 @@
           ./hosts/desktop/configuration.nix
           sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
+          nixvim.nixosModules.nixvim
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
