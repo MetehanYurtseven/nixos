@@ -56,7 +56,11 @@
           'update': ['nix', 'flake', 'update', '--flake', '/etc/nixos'],
           'switch': ['sudo', 'nixos-rebuild', 'switch'],
           'test': ['sudo', 'nixos-rebuild', 'test'],
-          'clean': ['sudo', 'nix-collect-garbage']
+          'clean': ['sudo', 'nix-collect-garbage'],
+
+          # vim aliases
+          'vi': ['nvim'],
+          'vim': ['nvim']
       })
 
       if 'SSH_TTY' not in os.environ:

@@ -7,6 +7,77 @@
       shiftwidth = 2;
       expandtab = true;
     };
+
+    colorschemes.rose-pine.enable = true;
+
+    plugins = {
+      lualine.enable = true;
+
+      lsp = {
+        enable = true;
+
+        keymaps = {
+          diagnostic = {
+            "<leader>e" = "open_float";
+            "[d" = "goto_prev";
+            "]d" = "goto_next";
+            "<leader>q" = "setloclist";
+          };
+
+          lspBuf = {
+            "gd" = "definition";
+            "gD" = "declaration";
+            "gr" = "references";
+            "gi" = "implementation";
+            "K" = "hover";
+            "<leader>rn" = "rename";
+            "<leader>ca" = "code_action";
+          };
+        };
+
+        servers = {
+          nixd.enable = true;
+          pyright.enable = true;
+          bashls.enable = true;
+          ccls.enable = true;
+          cmake.enable = true;
+          docker_language_server.enable = true;
+          eslint.enable = true;
+          html.enable = true;
+          jsonls.enable = true;
+          lua_ls.enable = true;
+          marksman.enable = true;
+          yamlls.enable = true;
+        };
+      };
+
+      treesitter = { # Syntax Highlighting
+        enable = true;
+
+        nixvimInjections = true;
+
+        settings = {
+          highlight.enable = true;
+          indent.enable = true;
+          incremental_selection.enable = true;
+        };
+      };
+
+      treesitter-context.enable = true;
+      treesitter-refactor.enable = true;
+      treesitter-textobjects.enable = true;
+
+      blink-cmp.enable = true; # Auto Completion
+
+      telescope = { # Fuzzy Finder
+        enable = true;
+        keymaps = {
+          "<C-t>" = {
+            action = "find_files";
+          };
+        };
+      };
+    };
   };
 }
 
