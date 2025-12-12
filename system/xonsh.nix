@@ -33,6 +33,8 @@
       $XONSH_STORE_STDOUT = True
       $UPDATE_OS_ENVIRON = True
 
+      $NVIMPAGER_NVIM = 'nvim'
+
       aliases.update({
           'cd': ['z'],
           'open': ['xdg-open'],

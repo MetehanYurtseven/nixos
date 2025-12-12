@@ -1,4 +1,8 @@
-{ config, lib, pkgs, ... }: {
+{ pkgs, ... }: {
+  environment.systemPackages = with pkgs; [
+    nvimpager
+  ];
+
   programs.nixvim = {
     enable = true;
     opts = {
@@ -67,7 +71,9 @@
       treesitter-refactor.enable = true;
       treesitter-textobjects.enable = true;
 
-      blink-cmp.enable = true; # Auto Completion
+      blink-cmp = { # Auto Completion
+        enable = true;
+      };
 
       telescope = { # Fuzzy Finder
         enable = true;
