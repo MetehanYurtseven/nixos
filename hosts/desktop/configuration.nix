@@ -32,6 +32,7 @@ in
     ../../system/audio.nix
     ../../system/ly.nix
     ../../extra-packages.nix
+    ../../system/docker.nix
   ];
 
   sops = {

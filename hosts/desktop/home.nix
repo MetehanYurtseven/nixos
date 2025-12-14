@@ -3,6 +3,7 @@
     ../../home/xdg.nix
     ../../home/git.nix
     ../../home/kitty.nix
+    ../../home/ghostty.nix
     ../../home/fonts.nix
     ../../home/gtk.nix
     ../../home/waybar.nix
