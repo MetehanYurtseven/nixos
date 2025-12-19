@@ -4,17 +4,22 @@
     
     extraPackages = ps: [
       (ps.callPackage ../packages/xontrib-fzf-widgets.nix { })
+      (ps.callPackage ../packages/xontrib-term-integrations.nix { })
     ];
     
     config = ''
       import os
 
-      # fzf widgets laden
+      # fzf widgets integration
       xontrib load fzf-widgets
       $fzf_history_binding = "c-r"
       $fzf_ssh_binding = "c-s"
       $fzf_file_binding = "c-t"
       $fzf_dir_binding = "c-g"
+
+      # kitty terminal integration
+      $XONTRIB_TERM_INTEGRATIONS_SKIP_ALIAS = True
+      xontrib load term_integration
 
       $XONSH_CAPTURE_ALWAYS = True
       $VI_MODE = True

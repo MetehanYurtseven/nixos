@@ -2,6 +2,7 @@
 
 let
   settings = import ../settings.nix;
+  kitty-scrollback-nvim = pkgs.callPackage ../packages/kitty-scrollback-nvim.nix { };
 in
 {
   programs.kitty = {
@@ -120,7 +121,7 @@ in
       map kitty_mod+i kitten hints
 
       # kitty-scrollback.nvim action alias
-      action_alias kitty_scrollback_nvim kitten /home/melthrox/.local/share/nvim/plugged/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py
+      action_alias kitty_scrollback_nvim kitten ${kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py
       
       # kitty-scrollback.nvim shortcuts
       map kitty_mod+h kitty_scrollback_nvim

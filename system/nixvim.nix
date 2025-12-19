@@ -1,4 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: 
+
+let
+  kitty-scrollback-nvim-src = pkgs.callPackage ../packages/kitty-scrollback-nvim.nix { };
+in
+{
   environment.systemPackages = with pkgs; [
     nvimpager
   ];
@@ -13,6 +18,13 @@
     };
 
     colorschemes.rose-pine.enable = true;
+
+    extraPlugins = [
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "kitty-scrollback.nvim";
+        src = kitty-scrollback-nvim-src;
+      })
+    ];
 
     plugins = {
       lualine.enable = true;
