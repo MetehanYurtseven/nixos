@@ -17,6 +17,7 @@ in
         # Nutze verschlüsselte Secrets
         privateKeyFile = config.sops.secrets."wireguard/private_key".path;
         dynamicEndpointRefreshSeconds = 25;
+        mtu = 1280;
         peers = [
           {
             publicKey = "m54PyD6ptUetZy17pExI6KnCvLumZEboXfd7YuSDVgA=";
