@@ -1,4 +1,4 @@
-{ config, lib, pkgs, aish, ... }:
+{ pkgs, aish, ... }:
 
 let
   customPackages = [
@@ -48,6 +48,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   programs.dconf.enable = true;
+  programs.nix-ld.enable = true;
 
   environment.systemPackages = complexPackages ++ [
     aish.packages.x86_64-linux.default
