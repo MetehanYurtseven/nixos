@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   settings = import ../settings.nix;
@@ -6,7 +6,7 @@ in
 {
   services.hyprpaper = {
     enable = true;
-    
+
     settings = {
       ipc = "on";
       splash = false;

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   settings = import ../../settings.nix;
@@ -15,4 +15,3 @@ in
     };
   };
 }
-

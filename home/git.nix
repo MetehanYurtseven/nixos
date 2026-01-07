@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 let
   settings = import ../settings.nix;
@@ -11,4 +11,3 @@ in
     settings.safe.directory = "/etc/nixos";
   };
 }
-

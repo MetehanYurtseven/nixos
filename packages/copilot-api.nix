@@ -1,10 +1,11 @@
-{ lib
-, stdenvNoCC
-, makeWrapper
-, bun
+{
+  lib,
+  stdenvNoCC,
+  makeWrapper,
+  bun,
 }:
 
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation {
   pname = "copilot-api";
   version = "latest";
 
@@ -35,4 +36,3 @@ stdenvNoCC.mkDerivation rec {
     maintainers = [ ];
   };
 }
-

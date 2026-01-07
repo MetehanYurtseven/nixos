@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }:
+{
   services.avahi.enable = true; # Avahi for AirPlay
   security.rtkit.enable = true; # RealtimeKit
 
@@ -7,7 +8,7 @@
 
     pulse.enable = true;
     wireplumber.enable = true;
-    
+
     alsa = {
       enable = true;
       support32Bit = true;
@@ -23,7 +24,7 @@
       };
     };
   };
-  
+
   environment.systemPackages = with pkgs; [
     pwvucontrol # PipeWire Volume Control
     playerctl # Media Player Control

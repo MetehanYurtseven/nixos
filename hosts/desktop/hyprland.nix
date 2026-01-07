@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   settings = import ../../settings.nix;
@@ -53,39 +53,39 @@ in
       "$mod" = settings.input.modifierKey;
 
       workspace = [
-      	"name:󱄅, monitor:DP-4, default:true"
-      	"1, monitor:DP-3, default:true"
-      	"2, monitor:DP-3"
-      	"3, monitor:DP-3"
-      	"4, monitor:DP-3"
-      	"5, monitor:DP-3"
-      	"6, monitor:DP-3"
-      	"7, monitor:DP-3"
-      	"8, monitor:DP-3"
-      	"9, monitor:DP-3"
-      	"0, monitor:DP-3"
-      	"special:pass, on-created-empty:$pass"
+        "name:󱄅, monitor:DP-4, default:true"
+        "1, monitor:DP-3, default:true"
+        "2, monitor:DP-3"
+        "3, monitor:DP-3"
+        "4, monitor:DP-3"
+        "5, monitor:DP-3"
+        "6, monitor:DP-3"
+        "7, monitor:DP-3"
+        "8, monitor:DP-3"
+        "9, monitor:DP-3"
+        "0, monitor:DP-3"
+        "special:pass, on-created-empty:$pass"
       ];
 
       exec-once = [
-      	"1password --ozone-platform-hint=x11 --silent &"  # 1Password
+        "1password --ozone-platform-hint=x11 --silent &" # 1Password
         "steam -silent &" # Steam
-      	"gsettings set org.gnome.desktop.interface cursor-theme '${settings.cursor.theme}'"  # Fix cursor for GTK apps
-      	"gsettings set org.gnome.desktop.interface cursor-size ${toString settings.cursor.size}"  # Fix cursor size for GTK apps
-      	"gsettings set org.gnome.desktop.interface icon-theme 'rose-pine'"  # Fix icons for GTK apps
-      	"gsettings set org.gnome.desktop.interface gtk-theme 'rose-pine'"  # Fix GTK theme
+        "gsettings set org.gnome.desktop.interface cursor-theme '${settings.cursor.theme}'" # Fix cursor for GTK apps
+        "gsettings set org.gnome.desktop.interface cursor-size ${toString settings.cursor.size}" # Fix cursor size for GTK apps
+        "gsettings set org.gnome.desktop.interface icon-theme 'rose-pine'" # Fix icons for GTK apps
+        "gsettings set org.gnome.desktop.interface gtk-theme 'rose-pine'" # Fix GTK theme
       ];
 
       env = [
-      	"XDG_CURRENT_DESKTOP,Hyprland"
-      	"XCURSOR_THEME,${settings.cursor.theme}"
-      	"XCURSOR_SIZE,${toString settings.cursor.size}"
-      	"HYPRCURSOR_THEME,${settings.cursor.theme}"
-      	"HYPRCURSOR_SIZE,${toString settings.cursor.size}"
-      	"GTK_THEME,rose-pine"
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XCURSOR_THEME,${settings.cursor.theme}"
+        "XCURSOR_SIZE,${toString settings.cursor.size}"
+        "HYPRCURSOR_THEME,${settings.cursor.theme}"
+        "HYPRCURSOR_SIZE,${toString settings.cursor.size}"
+        "GTK_THEME,rose-pine"
       ];
 
-      general =  {
+      general = {
         gaps_in = 5;
         gaps_out = "10,20,20,20";
 
@@ -101,45 +101,45 @@ in
       };
 
       decoration = {
-          rounding = 10;
+        rounding = 10;
 
-          active_opacity = 1;
-          inactive_opacity = 0.8;
+        active_opacity = 1;
+        inactive_opacity = 0.8;
 
-          blur = {
-              enabled = true;
-              size = 10;
-              passes = 3;
-              
-              vibrancy = 0.1696;
-          };
+        blur = {
+          enabled = true;
+          size = 10;
+          passes = 3;
+
+          vibrancy = 0.1696;
+        };
       };
 
       animations = {
-          enabled = true;
-          bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-          animation = [
-            "windows, 1, 5, myBezier"
-            "windowsOut, 1, 5, default, popin 80%"
-            "border, 1, 5, default"
-            "borderangle, 1, 5, default"
-            "fade, 1, 5, default"
-            "workspaces, 1, 5, default"
-          ];
+        enabled = true;
+        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+        animation = [
+          "windows, 1, 5, myBezier"
+          "windowsOut, 1, 5, default, popin 80%"
+          "border, 1, 5, default"
+          "borderangle, 1, 5, default"
+          "fade, 1, 5, default"
+          "workspaces, 1, 5, default"
+        ];
       };
 
       dwindle = {
-          pseudotile = true;
-          preserve_split = true;
+        pseudotile = true;
+        preserve_split = true;
       };
 
       master = {
-          new_status = "master";
+        new_status = "master";
       };
 
-      misc = { 
-          force_default_wallpaper = 0;
-          disable_hyprland_logo = true;
+      misc = {
+        force_default_wallpaper = 0;
+        disable_hyprland_logo = true;
       };
 
       input = {

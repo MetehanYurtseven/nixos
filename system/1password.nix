@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   settings = import ../settings.nix;
@@ -14,7 +14,7 @@ in
   # ----------------------------------------------------------------------------
   # SYSTEM-LEVEL CONFIGURATION
   # ----------------------------------------------------------------------------
-  
+
   # 1Password Programme
   programs._1password = {
     enable = true;
@@ -34,7 +34,7 @@ in
   # ----------------------------------------------------------------------------
   # Ermöglicht sudo-Befehle mit SSH-Key aus 1Password statt Passwort
   # Basiert auf pam_rssh (moderne Alternative zu pam_ssh_agent_auth)
-  
+
   # PAM rssh für SSH-Agent basierte Authentifizierung
   security.pam.rssh = {
     enable = true;
@@ -65,9 +65,9 @@ in
   # Der SSH-Key wird aus settings.nix importiert
   environment.etc."security/authorized_keys/${settings.user.username}" = {
     text = settings.user.sshKey;
-    mode = "0444";  # Read-only für alle
+    mode = "0444"; # Read-only für alle
   };
-  
+
   # XDG Portal für bessere Wayland/Hyprland Integration
   xdg.portal = {
     enable = true;
@@ -80,7 +80,7 @@ in
   # USER-LEVEL CONFIGURATION (via Home Manager)
   # ----------------------------------------------------------------------------
   # Automatische Konfiguration für den Haupt-User
-  
+
   home-manager.users."metehan.yurtseven" = {
     # GNOME Keyring (User-Level)
     services.gnome-keyring = {
@@ -98,12 +98,12 @@ in
       enable = true;
       # Keine automatischen Defaults - wir setzen alles explizit
       enableDefaultConfig = false;
-      
+
       # Explizite Konfiguration für alle Hosts
       matchBlocks."*" = {
         # 1Password SSH Agent
         identityAgent = "~/.1password/agent.sock";
-        
+
         # Standard SSH Defaults (manuell gesetzt für Zukunftssicherheit)
         addKeysToAgent = "yes";
         compression = true;
@@ -123,7 +123,7 @@ in
         # TODO: Ersetze mit deinem Public Key aus 1Password!
         # Format: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAA... comment"
         key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAplaceholder 1password-key";
-        signByDefault = false;  # Auf true setzen wenn Key eingetragen
+        signByDefault = false; # Auf true setzen wenn Key eingetragen
       };
       settings = {
         gpg.format = "ssh";

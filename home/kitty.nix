@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   settings = import ../settings.nix;
@@ -36,7 +36,7 @@ in
       shell_integration = "enabled";
       listen_on = "unix:/tmp/kitty";
       term = "xterm-256color";
-      
+
       # Close confirmation komplett deaktiviert
       confirm_os_window_close = 0;
 
@@ -92,7 +92,7 @@ in
     extraConfig = ''
       # kitty_mod definition (ctrl+shift)
       kitty_mod ctrl+shift
-      
+
       # Clear all default shortcuts FIRST
       clear_all_shortcuts yes
 
@@ -122,11 +122,11 @@ in
 
       # kitty-scrollback.nvim action alias
       action_alias kitty_scrollback_nvim kitten ${kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py
-      
+
       # kitty-scrollback.nvim shortcuts
       map kitty_mod+h kitty_scrollback_nvim
       map kitty_mod+g kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
-      
+
       # Mouse mapping for kitty-scrollback.nvim
       mouse_map ctrl+shift+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output
     '';

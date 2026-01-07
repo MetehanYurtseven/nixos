@@ -1,12 +1,13 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.xonsh = {
     enable = true;
-    
+
     extraPackages = ps: [
       (ps.callPackage ../packages/xontrib-fzf-widgets.nix { })
       (ps.callPackage ../packages/xontrib-term-integrations.nix { })
     ];
-    
+
     config = ''
       import os
 
@@ -43,7 +44,7 @@
       aliases.update({
           'cd': ['z'],
           'open': ['xdg-open'],
-          
+
           # ls Aliase
           'ls': ['lsd'],
           'sl': ['lsd'],
@@ -58,7 +59,7 @@
           'ga': ['git', 'add'],
           'gc': ['git', 'commit'],
           'gp': ['git', 'push'],
-          
+
           # nixos aliases
           'update': ['nix', 'flake', 'update', '--flake', '/etc/nixos'],
           'switch': ['sudo', 'nixos-rebuild', 'switch'],
@@ -79,7 +80,7 @@
     enable = true;
     enableXonshIntegration = true;
   };
-  
+
   environment.systemPackages = with pkgs; [
     fzf
     lsd

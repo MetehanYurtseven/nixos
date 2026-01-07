@@ -1,8 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   programs.steam = {
     enable = true;
-    
+
     # GE-Proton for better performance
     extraCompatPackages = with pkgs; [
       proton-ge-bin
@@ -13,7 +13,7 @@
     enable = true;
     enableRenice = true;
   };
-  
+
   # Steam Hardware Support (Controller, VR, etc.)
   hardware.steam-hardware.enable = true;
 }

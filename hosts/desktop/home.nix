@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ../../home/xdg.nix
     ../../home/git.nix
