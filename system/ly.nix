@@ -3,12 +3,10 @@
 {
   services.displayManager.ly = {
     enable = true;
-    
-    # settings = {
-    #   animation = false;
-    #   save = true;
-    #   load = true;
-    # };
+    settings = {
+      save = false;
+      load = false;
+    };
   };
 
   programs.hyprland = {

@@ -25,7 +25,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, aish, nixvim, ... }:
+  outputs = { nixpkgs, home-manager, sops-nix, aish, nixvim, ... }:
     let
       settings = import ./settings.nix;
     in
