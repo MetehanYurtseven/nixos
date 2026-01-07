@@ -44,6 +44,7 @@
       aliases.update({
           'cd': ['z'],
           'open': ['xdg-open'],
+          'zed': ['zeditor'],
 
           # ls Aliase
           'ls': ['lsd'],
