@@ -40,9 +40,6 @@
     slurp # Region selection
     grimblast # Hyprland screenshot helper
 
-    # General
-    code-cursor-fhs # Cursor for VS Code
-
     # Gaming
     wineWowPackages.stagingFull
     winetricks
@@ -50,4 +47,3 @@
 
   home.stateVersion = "18.09";
 }
-

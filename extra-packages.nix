@@ -12,5 +12,6 @@
     thunderbird
     p7zip
     gimp-with-plugins
+    zed-editor
   ];
 }
