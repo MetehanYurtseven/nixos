@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,20 +19,34 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    rwpspread = {
+      url = "git+file:/home/metehan.yurtseven/repos/rwpspread?ref=hyprpaper-cleanup&shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, sops-nix, aish, nixvim, ... }:
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      sops-nix,
+      aish,
+      rwpspread,
+      nixvim,
+      ...
+    }:
     let
       settings = import ./settings.nix;
     in
     {
       nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit aish; };
+        specialArgs = { inherit aish rwpspread; };
         modules = [
           ./hosts/desktop/configuration.nix
           sops-nix.nixosModules.sops
@@ -46,8 +60,9 @@
           {
             nixpkgs.overlays = [
               (final: prev: {
-                sf-mono-nerd-font = final.callPackage ./pkgs/sf-mono-nerd-font {};
-                sf-pro-nerd-font = final.callPackage ./pkgs/sf-pro-nerd-font {};
+                sf-mono-nerd-font = final.callPackage ./pkgs/sf-mono-nerd-font { };
+                sf-pro-nerd-font = final.callPackage ./pkgs/sf-pro-nerd-font { };
+                rwpspread = rwpspread.packages.${final.system}.default;
               })
             ];
           }
@@ -55,4 +70,3 @@
       };
     };
 }
-

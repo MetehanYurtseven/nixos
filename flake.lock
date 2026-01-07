@@ -129,7 +129,30 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
+        "rwpspread": "rwpspread",
         "sops-nix": "sops-nix"
+      }
+    },
+    "rwpspread": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767819107,
+        "narHash": "sha256-UhghP35+RFMZqm7V2lK+kaA2oM/PEi3E1tg28S+bVsE=",
+        "ref": "hyprpaper-cleanup",
+        "rev": "19756b1891bd8ede46acb768be6c44cae0c547d4",
+        "shallow": true,
+        "type": "git",
+        "url": "file:/home/metehan.yurtseven/repos/rwpspread"
+      },
+      "original": {
+        "ref": "hyprpaper-cleanup",
+        "shallow": true,
+        "type": "git",
+        "url": "file:/home/metehan.yurtseven/repos/rwpspread"
       }
     },
     "sops-nix": {
