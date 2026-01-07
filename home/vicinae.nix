@@ -8,21 +8,11 @@ in
     enable = true;
     systemd.enable = true;
     settings = {
-      font = {
-        normal = settings.appearance.displayFont;
-        size = 12;
-      };
-      window = {
-        csd = true;
-        opacity = 0.98;
-        rounding = 10;
-      };
-      keybinding = "default";
-      theme.name = "rose-pine";
-      faviconService = "twenty";
-      closeOnFocusLoss = false;
-      rootSearch.searchFiles = true;
+      search_files_in_root = false;
+      font.normal.family = settings.appearance.displayFont;
+      font.normal.size = 12;
+      theme.dark.name = "rose-pine";
+      launcher_window.opacity = 0.95;
     };
   };
 }
-

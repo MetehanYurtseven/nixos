@@ -7,6 +7,7 @@
     fzf # Enhanced CTRL+R Search
     lsd # Enhanced ls command
     busybox # Core utils
+    nixd # Nix Language Server
+    nil # Nix Language Server
   ];
 }
-
