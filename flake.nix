@@ -51,7 +51,6 @@
     in
     {
       nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         specialArgs = { inherit aish rwpspread; };
         modules = [
           ./hosts/desktop/configuration.nix
@@ -68,8 +67,8 @@
               (final: prev: {
                 sf-mono-nerd-font = final.callPackage ./pkgs/sf-mono-nerd-font { };
                 sf-pro-nerd-font = final.callPackage ./pkgs/sf-pro-nerd-font { };
-                rwpspread = rwpspread.packages.${final.system}.default;
-                hyprvoice = hyprvoice.packages.${final.system}.default;
+                rwpspread = rwpspread.packages.${final.stdenv.hostPlatform.system}.default;
+                hyprvoice = hyprvoice.packages.${final.stdenv.hostPlatform.system}.default;
               })
             ];
           }

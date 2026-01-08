@@ -16,9 +16,11 @@ let
   # - https://github.com/NixOS/nixpkgs/issues/282927
   # - https://github.com/NixOS/nixpkgs/issues/318925
   # - https://nixos.org/manual/nixpkgs/unstable/#testing-neovim-plugins-neovim-require-check
-  nvim-treesitter-textobjects-fixed = pkgs.vimPlugins.nvim-treesitter-textobjects.overrideAttrs (old: {
-    doCheck = false;
-  });
+  nvim-treesitter-textobjects-fixed =
+    pkgs.vimPlugins.nvim-treesitter-textobjects.overrideAttrs
+      (old: {
+        doCheck = false;
+      });
 in
 {
   environment.systemPackages = with pkgs; [
@@ -100,7 +102,8 @@ in
         };
       };
 
-      treesitter = { # Syntax Highlighting
+      treesitter = {
+        # Syntax Highlighting
         enable = true;
 
         nixvimInjections = true;
@@ -118,29 +121,44 @@ in
         enable = true;
         package = nvim-treesitter-textobjects-fixed;
 
-        select = {
-          enable = true;
-          keymaps = {
-            "af" = "@function.outer";
-            "if" = "@function.inner";
-            "ac" = "@class.outer";
-            "ic" = "@class.inner";
+        settings = {
+          select = {
+            enable = true;
+            keymaps = {
+              "af" = "@function.outer";
+              "if" = "@function.inner";
+              "ac" = "@class.outer";
+              "ic" = "@class.inner";
+            };
           };
         };
       };
 
-      blink-cmp = { # Auto Completion
+      blink-cmp = {
+        # Auto Completion
         enable = true;
         settings = {
           keymap = {
-            "<C-j>" = [ "select_next" "fallback" ];
-            "<C-k>" = [ "select_prev" "fallback" ];
-            "<C-l>" = [ "select_and_accept" "fallback" ];
+            "<C-j>" = [
+              "select_next"
+              "fallback"
+            ];
+            "<C-k>" = [
+              "select_prev"
+              "fallback"
+            ];
+            "<C-l>" = [
+              "select_and_accept"
+              "fallback"
+            ];
           };
         };
       };
 
-      telescope = { # Fuzzy Finder
+      web-devicons.enable = true;
+
+      telescope = {
+        # Fuzzy Finder
         enable = true;
         keymaps = {
           "<C-t>" = {
