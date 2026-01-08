@@ -45,6 +45,8 @@ in
     "flakes"
   ];
 
+  nix.package = pkgs.lixPackageSets.stable.lix;
+
   time.timeZone = "Europe/Berlin";
 
   nixpkgs.config.allowUnfree = true;
