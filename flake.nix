@@ -14,18 +14,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    rwpspread = {
+      url = "github:MetehanYurtseven/rwpspread?ref=hyprpaper-cleanup";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     aish = {
       url = "git+file:/home/metehan.yurtseven/repos/aish?ref=master&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    rwpspread = {
-      url = "git+file:/home/metehan.yurtseven/repos/rwpspread?ref=hyprpaper-cleanup&shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    hyprvoice = {
+      url = "git+file:/home/metehan.yurtseven/repos/hyprvoice?ref=nix-flake&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -38,6 +43,7 @@
       aish,
       rwpspread,
       nixvim,
+      hyprvoice,
       ...
     }:
     let
@@ -63,6 +69,7 @@
                 sf-mono-nerd-font = final.callPackage ./pkgs/sf-mono-nerd-font { };
                 sf-pro-nerd-font = final.callPackage ./pkgs/sf-pro-nerd-font { };
                 rwpspread = rwpspread.packages.${final.system}.default;
+                hyprvoice = hyprvoice.packages.${final.system}.default;
               })
             ];
           }

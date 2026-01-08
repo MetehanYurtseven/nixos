@@ -64,6 +64,28 @@
         "type": "github"
       }
     },
+    "hyprvoice": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767899252,
+        "narHash": "sha256-jeNa62sRcc7FYqthQPvrtvI3THC6ztTbu1KPlKhnyII=",
+        "ref": "nix-flake",
+        "rev": "946aa62428733f91c8213bd73074e1bf9c13b353",
+        "shallow": true,
+        "type": "git",
+        "url": "file:/home/metehan.yurtseven/repos/hyprvoice"
+      },
+      "original": {
+        "ref": "nix-flake",
+        "shallow": true,
+        "type": "git",
+        "url": "file:/home/metehan.yurtseven/repos/hyprvoice"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1767640445,
@@ -127,6 +149,7 @@
       "inputs": {
         "aish": "aish",
         "home-manager": "home-manager",
+        "hyprvoice": "hyprvoice",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "rwpspread": "rwpspread",
@@ -140,19 +163,18 @@
         ]
       },
       "locked": {
-        "lastModified": 1767819107,
-        "narHash": "sha256-UhghP35+RFMZqm7V2lK+kaA2oM/PEi3E1tg28S+bVsE=",
-        "ref": "hyprpaper-cleanup",
-        "rev": "19756b1891bd8ede46acb768be6c44cae0c547d4",
-        "shallow": true,
-        "type": "git",
-        "url": "file:/home/metehan.yurtseven/repos/rwpspread"
+        "lastModified": 1767821721,
+        "narHash": "sha256-SDuuZyOigTprH8fie0mmdgtCmqgzWbrHbLofFSuKXiw=",
+        "owner": "MetehanYurtseven",
+        "repo": "rwpspread",
+        "rev": "4f80cdfc0b33dc92a5526f0c52fb965467cf6033",
+        "type": "github"
       },
       "original": {
+        "owner": "MetehanYurtseven",
         "ref": "hyprpaper-cleanup",
-        "shallow": true,
-        "type": "git",
-        "url": "file:/home/metehan.yurtseven/repos/rwpspread"
+        "repo": "rwpspread",
+        "type": "github"
       }
     },
     "sops-nix": {

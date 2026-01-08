@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     remmina
     lutris
@@ -13,5 +14,6 @@
     p7zip
     gimp-with-plugins
     zed-editor
+    hyprvoice
   ];
 }
