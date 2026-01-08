@@ -12,6 +12,7 @@
     ../../home/hypridle.nix
     ../../home/chromium.nix
     ../../home/vicinae.nix
+    ../../home/swaync.nix
     ./hyprland.nix
   ];
 

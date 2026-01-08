@@ -170,6 +170,7 @@ in
         ", Print, exec, grimblast copysave area ~/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg" # Screenshots
         "$mod, V, exec, xdg-open vicinae://extensions/vicinae/clipboard/history" # Vicinae Clipboard History
         "$mod, R, exec, xdg-open vicinae://extensions/vicinae/system/run" # Vicinae Run
+        "$mod, Y, exec, hyprvoice toggle"
 
         "$mod, P, togglespecialworkspace, pass" # Toggle 1Password Workspace
 
