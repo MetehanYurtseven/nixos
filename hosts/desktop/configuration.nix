@@ -5,9 +5,7 @@ let
     "copilot-api"
   ];
 
-  complexPackages = map 
-    (name: pkgs.callPackage ../../packages/${name}.nix { })
-    customPackages;
+  complexPackages = map (name: pkgs.callPackage ../../packages/${name}.nix { }) customPackages;
 in
 {
   imports = [
@@ -31,6 +29,7 @@ in
     ../../system/1password.nix
     ../../system/audio.nix
     ../../system/ly.nix
+    ../../system/hyprvoice.nix
     ../../extra-packages.nix
     ../../system/docker.nix
   ];
@@ -41,7 +40,10 @@ in
     secrets."wireguard/preshared_key" = { };
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   time.timeZone = "Europe/Berlin";
 
@@ -56,4 +58,3 @@ in
 
   system.stateVersion = "25.05";
 }
-
