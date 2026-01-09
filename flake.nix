@@ -28,11 +28,6 @@
       url = "git+file:/home/metehan.yurtseven/repos/aish?ref=master&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprvoice = {
-      url = "github:MetehanYurtseven/hyprvoice?ref=nix-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -43,7 +38,6 @@
       aish,
       rwpspread,
       nixvim,
-      hyprvoice,
       ...
     }:
     let
@@ -67,8 +61,8 @@
               (final: prev: {
                 sf-mono-nerd-font = final.callPackage ./pkgs/sf-mono-nerd-font { };
                 sf-pro-nerd-font = final.callPackage ./pkgs/sf-pro-nerd-font { };
+                hyprvoice = final.callPackage ./pkgs/hyprvoice/package.nix { };
                 rwpspread = rwpspread.packages.${final.stdenv.hostPlatform.system}.default;
-                hyprvoice = hyprvoice.packages.${final.stdenv.hostPlatform.system}.default;
               })
             ];
           }

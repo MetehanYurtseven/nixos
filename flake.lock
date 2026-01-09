@@ -64,27 +64,6 @@
         "type": "github"
       }
     },
-    "hyprvoice": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1767973512,
-        "narHash": "sha256-FETubfdZ44qIFm6pHJUMbmvTwbuL6OmpL4Wvdcz/J58=",
-        "owner": "MetehanYurtseven",
-        "repo": "hyprvoice",
-        "rev": "cf8bb944cd4e96dee79073d636d4ff03ad58213e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MetehanYurtseven",
-        "ref": "nix-flake",
-        "repo": "hyprvoice",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1767640445,
@@ -148,7 +127,6 @@
       "inputs": {
         "aish": "aish",
         "home-manager": "home-manager",
-        "hyprvoice": "hyprvoice",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "rwpspread": "rwpspread",
