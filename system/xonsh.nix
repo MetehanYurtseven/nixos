@@ -4,8 +4,8 @@
     enable = true;
 
     extraPackages = ps: [
-      (ps.callPackage ../packages/xontrib-fzf-widgets.nix { })
-      (ps.callPackage ../packages/xontrib-term-integrations.nix { })
+      (ps.callPackage ../pkgs/xontrib-fzf-widgets { })
+      (ps.callPackage ../pkgs/xontrib-term-integrations { })
     ];
 
     config = ''

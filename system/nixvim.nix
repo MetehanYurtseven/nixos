@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 let
-  kitty-scrollback-nvim-src = pkgs.callPackage ../packages/kitty-scrollback-nvim.nix { };
-
   # WORKAROUND: Skip build-time require checks for nvim-treesitter-textobjects
   #
   # The nixpkgs neovim-require-check runs during build in an isolated environment
@@ -57,7 +55,7 @@ in
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
         name = "kitty-scrollback.nvim";
-        src = kitty-scrollback-nvim-src;
+        src = pkgs.kitty-scrollback-nvim;
       })
     ];
 

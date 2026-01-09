@@ -63,6 +63,8 @@
                 sf-mono-nerd-font = final.callPackage ./pkgs/sf-mono-nerd-font { };
                 sf-pro-nerd-font = final.callPackage ./pkgs/sf-pro-nerd-font { };
                 hyprvoice = final.callPackage ./pkgs/hyprvoice { };
+                kitty-scrollback-nvim = final.callPackage ./pkgs/kitty-scrollback-nvim { };
+                copilot-api = final.callPackage ./pkgs/copilot-api { };
                 rwpspread = rwpspread.packages.${final.stdenv.hostPlatform.system}.default;
               })
             ];

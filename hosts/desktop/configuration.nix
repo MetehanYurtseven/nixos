@@ -1,12 +1,4 @@
 { pkgs, aish, ... }:
-
-let
-  customPackages = [
-    "copilot-api"
-  ];
-
-  complexPackages = map (name: pkgs.callPackage ../../packages/${name}.nix { }) customPackages;
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -54,7 +46,7 @@ in
   programs.dconf.enable = true;
   programs.nix-ld.enable = true;
 
-  environment.systemPackages = complexPackages ++ [
+  environment.systemPackages = [
     aish.packages.x86_64-linux.default
   ];
 

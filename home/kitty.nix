@@ -1,7 +1,4 @@
 { pkgs, settings, ... }:
-let
-  kitty-scrollback-nvim = pkgs.callPackage ../packages/kitty-scrollback-nvim.nix { }; # TODO > move to flake.nix
-in
 {
   programs.kitty = {
     enable = true;
@@ -119,7 +116,7 @@ in
       map kitty_mod+i kitten hints
 
       # kitty-scrollback.nvim action alias
-      action_alias kitty_scrollback_nvim kitten ${kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py
+      action_alias kitty_scrollback_nvim kitten ${pkgs.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py
 
       # kitty-scrollback.nvim shortcuts
       map kitty_mod+h kitty_scrollback_nvim
