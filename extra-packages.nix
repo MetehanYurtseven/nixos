@@ -14,5 +14,7 @@
     p7zip
     gimp-with-plugins
     zed-editor
+    restic
+    resticprofile
   ];
 }
