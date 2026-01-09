@@ -71,19 +71,18 @@
         ]
       },
       "locked": {
-        "lastModified": 1767899252,
-        "narHash": "sha256-jeNa62sRcc7FYqthQPvrtvI3THC6ztTbu1KPlKhnyII=",
-        "ref": "nix-flake",
-        "rev": "946aa62428733f91c8213bd73074e1bf9c13b353",
-        "shallow": true,
-        "type": "git",
-        "url": "file:/home/metehan.yurtseven/repos/hyprvoice"
+        "lastModified": 1767973512,
+        "narHash": "sha256-FETubfdZ44qIFm6pHJUMbmvTwbuL6OmpL4Wvdcz/J58=",
+        "owner": "MetehanYurtseven",
+        "repo": "hyprvoice",
+        "rev": "cf8bb944cd4e96dee79073d636d4ff03ad58213e",
+        "type": "github"
       },
       "original": {
+        "owner": "MetehanYurtseven",
         "ref": "nix-flake",
-        "shallow": true,
-        "type": "git",
-        "url": "file:/home/metehan.yurtseven/repos/hyprvoice"
+        "repo": "hyprvoice",
+        "type": "github"
       }
     },
     "nixpkgs": {

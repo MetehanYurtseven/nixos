@@ -4,9 +4,6 @@
 
   environment.systemPackages = with pkgs; [
     hyprvoice
-    ydotool
-    pipewire
-    libnotify
   ];
 
   systemd.user.services.hyprvoice = {
@@ -22,12 +19,5 @@
       Restart = "on-failure";
       RestartSec = 5;
     };
-
-    path = with pkgs; [
-      pipewire
-      libnotify
-      wl-clipboard
-      ydotool
-    ];
   };
 }

@@ -30,7 +30,7 @@
     };
 
     hyprvoice = {
-      url = "git+file:/home/metehan.yurtseven/repos/hyprvoice?ref=nix-flake&shallow=1";
+      url = "github:MetehanYurtseven/hyprvoice?ref=nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
