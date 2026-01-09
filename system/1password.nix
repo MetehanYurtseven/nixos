@@ -1,8 +1,4 @@
-{ pkgs, ... }:
-
-let
-  settings = import ../settings.nix;
-in
+{ pkgs, settings, ... }:
 {
   # ============================================================================
   # 1PASSWORD ALL-IN-ONE CONFIGURATION

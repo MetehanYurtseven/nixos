@@ -1,8 +1,4 @@
-{ config, ... }:
-
-let
-  settings = import ../../settings.nix;
-in
+{ config, settings, ... }:
 {
   networking.hostName = settings.system.hostname;
   networking.firewall.enable = false;

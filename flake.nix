@@ -45,7 +45,7 @@
     in
     {
       nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit aish rwpspread; };
+        specialArgs = { inherit aish rwpspread settings; };
         modules = [
           ./hosts/desktop/configuration.nix
           sops-nix.nixosModules.sops
@@ -54,6 +54,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit settings; };
             home-manager.users.${settings.user.username} = import ./hosts/desktop/home.nix;
           }
           {
@@ -61,7 +62,7 @@
               (final: prev: {
                 sf-mono-nerd-font = final.callPackage ./pkgs/sf-mono-nerd-font { };
                 sf-pro-nerd-font = final.callPackage ./pkgs/sf-pro-nerd-font { };
-                hyprvoice = final.callPackage ./pkgs/hyprvoice/package.nix { };
+                hyprvoice = final.callPackage ./pkgs/hyprvoice { };
                 rwpspread = rwpspread.packages.${final.stdenv.hostPlatform.system}.default;
               })
             ];

@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-
+{ pkgs, settings, ... }:
 let
-  settings = import ../settings.nix;
-  kitty-scrollback-nvim = pkgs.callPackage ../packages/kitty-scrollback-nvim.nix { };
+  kitty-scrollback-nvim = pkgs.callPackage ../packages/kitty-scrollback-nvim.nix { }; # TODO > move to flake.nix
 in
 {
   programs.kitty = {

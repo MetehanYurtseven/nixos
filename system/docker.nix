@@ -1,7 +1,4 @@
-{ ... }:
-let
-  settings = import ../settings.nix;
-in
+{ settings, ... }:
 {
   virtualisation.docker = {
     enable = true;

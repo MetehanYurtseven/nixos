@@ -1,7 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, settings, ... }:
 let
-  settings = import ../settings.nix;
-
   # Rose Pine colors applied to adw-gtk3-dark base theme
   # adw-gtk3 provides complete widget styling, we just override colors
   rosePineColors = ''

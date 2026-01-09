@@ -1,8 +1,4 @@
-{ pkgs, ... }:
-
-let
-  settings = import ../../settings.nix;
-in
+{ pkgs, settings, ... }:
 {
   home.packages = with pkgs; [
     hyprpolkitagent # PolKit Agent for Hyprland

@@ -1,8 +1,4 @@
-{ ... }:
-
-let
-  settings = import ../settings.nix;
-in
+{ settings, ... }:
 {
   programs.vicinae = {
     enable = true;

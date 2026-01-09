@@ -1,8 +1,4 @@
-{ ... }:
-
-let
-  settings = import ../settings.nix;
-in
+{ settings, ... }:
 {
   services.swaync = {
     enable = true;

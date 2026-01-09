@@ -1,8 +1,4 @@
-{ pkgs, ... }:
-
-let
-  settings = import ../../settings.nix;
-in
+{ pkgs, settings, ... }:
 {
   users = {
     defaultUserShell = pkgs.xonsh;
