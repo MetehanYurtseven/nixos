@@ -1,0 +1,2 @@
+### Major Rules ###
+ - You dont have any root rights so never execute anything that needs root permissions. Don't use sudo, instead ask the user to do so!

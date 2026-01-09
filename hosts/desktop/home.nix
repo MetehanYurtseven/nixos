@@ -28,6 +28,7 @@
     rose-pine-gtk-theme # GTK Theme
     rose-pine-icon-theme # Icon Theme
     rose-pine-cursor # Cursor Theme
+    hicolor-icon-theme # Fallback icon theme
 
     # Fonts
     nerd-fonts.hack # Hack Nerd Font
