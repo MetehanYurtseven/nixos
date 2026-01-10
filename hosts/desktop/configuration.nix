@@ -1,4 +1,4 @@
-{ pkgs, aish, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -49,10 +49,6 @@
 
   programs.dconf.enable = true;
   programs.nix-ld.enable = true;
-
-  environment.systemPackages = [
-    aish.packages.x86_64-linux.default
-  ];
 
   system.stateVersion = "25.05";
 }

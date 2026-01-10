@@ -23,11 +23,6 @@
       url = "github:MetehanYurtseven/rwpspread?ref=hyprpaper-cleanup";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    aish = {
-      url = "git+file:/home/metehan.yurtseven/repos/aish?ref=master&shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -35,7 +30,6 @@
       nixpkgs,
       home-manager,
       sops-nix,
-      aish,
       rwpspread,
       nixvim,
       ...
@@ -45,7 +39,7 @@
     in
     {
       nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit aish rwpspread settings; };
+        specialArgs = { inherit rwpspread settings; };
         modules = [
           ./hosts/desktop/configuration.nix
           sops-nix.nixosModules.sops
