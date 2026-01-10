@@ -41,6 +41,10 @@
 
       $NVIMPAGER_NVIM = 'nvim'
 
+      $VISUAL = "nvim"
+      $EDITOR = "nvim"
+      $PAGER = "nvimpager"
+
       aliases.update({
           'cd': ['z'],
           'open': ['xdg-open'],
@@ -49,17 +53,21 @@
           # ls Aliase
           'ls': ['lsd'],
           'sl': ['lsd'],
-          'l': ['lsd'],
+          'l': ['lsd', '-l'],
           'll': ['lsd', '-l'],
           'la': ['lsd', '-lA'],
           'lt': ['lsd', '-l', '--tree', '--depth', '3'],
           'tree': ['lsd', '--tree'],
 
           # git aliases
-          'gs': ['git', 'status'],
-          'ga': ['git', 'add'],
-          'gc': ['git', 'commit'],
-          'gp': ['git', 'push'],
+          'status': ['git', 'status'],
+          'add': ['git', 'add'],
+          'commit': ['git', 'commit'],
+          'pull': ['git', 'pull'],
+          'push': ['git', 'push'],
+          'checkout': ['git', 'checkout'],
+          'branch': ['git', 'branch'],
+          'log': 'git log | nvimpager',
 
           # nixos aliases
           'update': ['nix', 'flake', 'update', '--flake', '/etc/nixos'],
