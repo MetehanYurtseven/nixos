@@ -4,7 +4,6 @@
     remmina
     lutris
     steam
-    uv
     nodejs_24
     neofetch
     nmap
@@ -14,7 +13,5 @@
     p7zip
     gimp-with-plugins
     zed-editor
-    restic
-    resticprofile
   ];
 }

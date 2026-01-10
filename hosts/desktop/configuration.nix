@@ -9,6 +9,7 @@
     ./hardware.nix
     ./users.nix
     ./steam.nix
+    ./restic-backup.nix
 
     ../../system/packages.nix
     ../../system/console.nix
@@ -30,6 +31,9 @@
     defaultSopsFile = ./secrets.yaml;
     secrets."wireguard/private_key" = { };
     secrets."wireguard/preshared_key" = { };
+
+    secrets."restic/repository" = { };
+    secrets."restic/key" = { };
   };
 
   nix.settings.experimental-features = [
