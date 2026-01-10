@@ -41,8 +41,6 @@
     "flakes"
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-
   nix.package = pkgs.lixPackageSets.stable.lix;
 
   time.timeZone = "Europe/Berlin";
