@@ -16,7 +16,7 @@
     ../../system/environment.nix
     ../../system/security.nix
     ../../system/tmpfiles.nix
-    ../../system/xonsh.nix
+    ../../system/zsh.nix
     ../../system/direnv.nix
     ../../system/nixvim.nix
     ../../system/1password.nix

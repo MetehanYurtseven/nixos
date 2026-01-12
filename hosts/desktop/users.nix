@@ -1,7 +1,6 @@
-{ pkgs, settings, ... }:
+{ settings, ... }:
 {
   users = {
-    defaultUserShell = pkgs.xonsh;
     users.${settings.user.username} = {
       isNormalUser = true;
       extraGroups = [ "wheel" ];
