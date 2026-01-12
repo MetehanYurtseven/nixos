@@ -146,11 +146,6 @@
         touchpad.natural_scroll = false;
       };
 
-      device = {
-        name = "logitech-mx-master-3s";
-        sensitivity = -1;
-      };
-
       bind = [
         "$mod SHIFT, Q, exit," # Exit Hyprland
         "$mod, Q, killactive," # Kill Active Window
