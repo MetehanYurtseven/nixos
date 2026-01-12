@@ -1,4 +1,9 @@
-{ config, settings, ... }:
+{
+  config,
+  lib,
+  settings,
+  ...
+}:
 {
   networking.hostName = settings.system.hostname;
   networking.firewall.enable = false;
@@ -28,4 +33,7 @@
       };
     };
   };
+
+  # WireGuard starts asynchronously without blocking boot
+  systemd.services.wireguard-wg0.wantedBy = lib.mkForce [ ];
 }

@@ -65,6 +65,12 @@
   fileSystems."/mnt/INT1" = {
     device = "/dev/disk/by-label/INT1";
     fsType = "ext4";
+    options = [
+      "nofail"
+      "x-systemd.automount"
+      "x-systemd.idle-timeout=300"
+      "x-systemd.device-timeout=5s"
+    ];
   };
 
   swapDevices = [ ];
