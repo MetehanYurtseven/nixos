@@ -80,8 +80,13 @@
       bindkey -M viins '^?' backward-delete-char
       bindkey -M viins '^H' backward-delete-char
 
-      # enable fzf
+      # fzf
       eval "$(fzf --zsh)"
+
+      # 1password ssh agent
+      if [[ -z "$SSH_TTY" ]]; then
+        export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+      fi
     '';
   };
 

@@ -111,8 +111,6 @@
       };
     };
 
-    # SSH_AUTH_SOCK: Wird in system/xonsh.nix gesetzt
-
     # Git SSH Signing
     programs.git = {
       signing = {
