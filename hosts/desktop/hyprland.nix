@@ -229,21 +229,12 @@
         ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
       ];
 
-      windowrulev2 = [
-        "suppressevent maximize, class:.*"
-
-        "float, title:(1Password)"
-        "size 70% 70%, title:(1Password)"
-        "center, title:(1Password)"
-        "stayfocused, title:(Quick Access - 1Password)"
-
-        "float, title:(Qalculate!)"
-        "size 0% 0%, title:(Qalculate!)"
-        "center, title:(Qalculate!)"
-
-        "float, title:(Bluetooth Devices)"
-        "size 30% 50%, title:(Bluetooth Devices)"
-        "center, title:(Bluetooth Devices)"
+      windowrule = [
+        "suppress_event maximize, match:class .*"
+        "float on, size (monitor_w*0.7) (monitor_h*0.7), center on, match:title (1Password)"
+        "float on, size (monitor_w*0) (monitor_h*0), center on, match:title (Qalculate!)"
+        "float on, size (monitor_w*0.3) (monitor_h*0.5), center on, match:title (Bluetooth Devices)"
+        # "stay_focused on, match:title (Quick Access - 1Password)"
       ];
     };
   };
