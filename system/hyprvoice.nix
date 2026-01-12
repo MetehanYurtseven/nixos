@@ -11,7 +11,8 @@
     documentation = [ "https://github.com/leonardotrapani/hyprvoice" ];
     after = [ "pipewire.service" ];
     wants = [ "pipewire.service" ];
-    wantedBy = [ "default.target" ];
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
 
     serviceConfig = {
       Type = "simple";

@@ -21,7 +21,7 @@
     ../../system/nixvim.nix
     ../../system/1password.nix
     ../../system/audio.nix
-    ../../system/ly.nix
+    ../../system/greetd.nix
     ../../system/hyprvoice.nix
     ../../extra-packages.nix
     ../../system/docker.nix

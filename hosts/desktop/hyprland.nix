@@ -6,6 +6,8 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = false;
+
     settings = {
       "$terminal" = settings.applications.terminal;
       "$fileManager" = settings.applications.fileManager;

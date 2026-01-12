@@ -1,15 +1,20 @@
 { pkgs, ... }:
 
 {
-  services.displayManager.ly = {
+  services.greetd = {
     enable = true;
+    useTextGreeter = true;
     settings = {
-      session_log = null;
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember";
+        user = "greeter";
+      };
     };
   };
 
   programs.hyprland = {
     enable = true;
+    withUWSM = true;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
