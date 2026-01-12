@@ -27,6 +27,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       home-manager,
       sops-nix,
@@ -40,18 +41,21 @@
     {
       nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit rwpspread settings; };
+        # NixOS Modules
         modules = [
           ./hosts/desktop/configuration.nix
           sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
           nixvim.nixosModules.nixvim
           {
+            # Home Manager
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit settings; };
             home-manager.users.${settings.user.username} = import ./hosts/desktop/home.nix;
           }
           {
+            # Custom Packages
             nixpkgs.overlays = [
               (final: prev: {
                 sf-mono-nerd-font = final.callPackage ./pkgs/sf-mono-nerd-font { };
@@ -62,6 +66,19 @@
                 rwpspread = rwpspread.packages.${final.stdenv.hostPlatform.system}.default;
               })
             ];
+          }
+          {
+            # Set system label and git revision as generation
+            system.nixos.label = nixpkgs.lib.mkForce (
+              let
+                rev = self.rev or "dirty";
+                shortRev = self.shortRev or (builtins.substring 0 7 rev);
+                date = self.lastModifiedDate or "unknown";
+                formattedDate = builtins.substring 0 8 date;
+              in
+              "${formattedDate}-${shortRev}"
+            );
+            system.configurationRevision = self.rev or "dirty";
           }
         ];
       };
