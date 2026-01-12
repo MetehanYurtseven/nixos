@@ -13,7 +13,6 @@
 
     ../../system/packages.nix
     ../../system/console.nix
-    ../../system/environment.nix
     ../../system/security.nix
     ../../system/tmpfiles.nix
     ../../system/zsh.nix

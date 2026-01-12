@@ -95,6 +95,7 @@
     VISUAL = "nvim";
     PAGER = "nvimpager";
     MANPAGER = "nvim +Man!";
+    FZF_DEFAULT_OPTS = "--layout reverse";
   };
 
   programs.zoxide = {
