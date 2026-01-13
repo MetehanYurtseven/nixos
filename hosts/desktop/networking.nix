@@ -9,9 +9,11 @@
   networking.firewall.enable = false;
 
   networking.wireless.enable = false;
+  networking.enableIPv6 = false;
 
   networking.defaultGateway = "192.168.0.1";
   networking.nameservers = [
+    "192.168.0.1"
     "1.1.1.1"
     "8.8.8.8"
   ];
