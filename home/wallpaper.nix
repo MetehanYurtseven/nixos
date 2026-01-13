@@ -40,7 +40,7 @@
 
   wayland.windowManager.hyprland.settings = {
     exec-once = [
-      "rwpspread --daemon --backend hyprpaper --image ${settings.wallpaper.path}"
+      "rwpspread --daemon --backend hyprpaper --image ${settings.wallpaper.path} &"
     ];
   };
 }
