@@ -8,14 +8,30 @@
   networking.hostName = settings.system.hostname;
   networking.firewall.enable = false;
 
-  services.openssh.enable = true;
+  networking.wireless.enable = false;
+
+  networking.defaultGateway = "192.168.0.1";
+  networking.nameservers = [
+    "1.1.1.1"
+    "8.8.8.8"
+  ];
+
+  networking.interfaces.enp5s0 = {
+    useDHCP = false;
+    ipv4.addresses = [
+      {
+        address = "192.168.0.100";
+        prefixLength = 24;
+      }
+    ];
+    wakeOnLan.enable = true;
+  };
 
   networking.wireguard = {
     enable = true;
     interfaces = {
       wg0 = {
         ips = [ "10.0.0.9" ];
-        # Nutze verschlüsselte Secrets
         privateKeyFile = config.sops.secrets."wireguard/private_key".path;
         dynamicEndpointRefreshSeconds = 25;
         mtu = 1280;

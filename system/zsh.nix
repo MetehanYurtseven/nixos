@@ -15,7 +15,7 @@
     shellAliases = {
       cd = "z";
       open = "xdg-open";
-      zed = "zeditor";
+      zed = "zeditor -n";
 
       # ls Aliase
       ls = "lsd";

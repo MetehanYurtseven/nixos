@@ -2,7 +2,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./wifi.nix
     ./bluetooth.nix
     ./boot.nix
     ./networking.nix
@@ -12,6 +11,7 @@
     ./restic-backup.nix
 
     ../../system/packages.nix
+    ../../system/ssh.nix
     ../../system/console.nix
     ../../system/security.nix
     ../../system/tmpfiles.nix
