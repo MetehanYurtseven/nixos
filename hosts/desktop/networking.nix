@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   settings,
   ...
 }:
@@ -8,8 +9,6 @@
   networking = {
     hostName = settings.system.hostname;
     firewall.enable = false;
-
-    wireless.enable = false;
     enableIPv6 = false;
 
     defaultGateway = "192.168.0.1";
@@ -19,21 +18,16 @@
       "8.8.8.8"
     ];
 
-    interfaces."enp5s0" = {
-      useDHCP = false;
-      ipv4.addresses = [
-        {
-          address = "192.168.0.100";
-          prefixLength = 24;
-        }
-      ];
-      wakeOnLan.enable = true;
-    };
-
     resolvconf.extraOptions = [
       "single-request"
       "no-aaaa"
     ];
+
+    wireless = {
+      enable = true;
+      networks."Vodafone-72C8".pskRaw =
+        "29c234cea59ea76d6db251c62f15c89b4006cae8e46a0661febf3f3faac7949d";
+    };
 
     wireguard = {
       enable = true;
@@ -61,4 +55,17 @@
 
   # WireGuard starts asynchronously without blocking boot
   systemd.services.wireguard-wg0.wantedBy = lib.mkForce [ ];
+
+  # Disable wireless power management
+  systemd.services.disable-wifi-powersave = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    script = ''
+      ${pkgs.iw}/bin/iw dev wlp4s0 set power_save off
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+  };
 }
