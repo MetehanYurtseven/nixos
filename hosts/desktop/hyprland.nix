@@ -1,9 +1,15 @@
 { pkgs, settings, ... }:
+let
+  tts-cli = pkgs.writeShellScriptBin "tts-cli" ''
+    export OPENAI_API_KEY=$(cat /run/secrets/openai_api_key)
+    exec ${pkgs.tts-cli}/bin/tts-cli "$@"
+  '';
+in
 {
-  home.packages = with pkgs; [
-    hyprpolkitagent # PolKit Agent for Hyprland
-    tts-cli
-    mpv
+  home.packages = [
+    pkgs.hyprpolkitagent # PolKit Agent for Hyprland
+    pkgs.mpv # Audio playback for tts-cli
+    tts-cli # Text to Speach
   ];
 
   wayland.windowManager.hyprland = {
