@@ -37,10 +37,11 @@
       log = "git log";
 
       # nixos aliases
-      nupdate = "nix flake update --flake /etc/nixos";
-      nswitch = "sudo nixos-rebuild switch";
-      ntest = "sudo nixos-rebuild test";
-      nclean = "sudo nix-collect-garbage";
+      nupdate = "${pkgs.nh}/bin/nh os switch --update --ask /etc/nixos";
+      nswitch = "${pkgs.nh}/bin/nh os switch /etc/nixos";
+      ntest = "${pkgs.nh}/bin/nh os test /etc/nixos";
+      nclean = "${pkgs.nh}/bin/nh clean all --ask";
+      nsearch = "${pkgs.nh}/bin/nh search";
 
       # vim aliases
       vi = "nvim";
