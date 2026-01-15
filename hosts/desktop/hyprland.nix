@@ -1,15 +1,27 @@
 { pkgs, settings, ... }:
 let
-  tts-cli = pkgs.writeShellScriptBin "tts-cli" ''
+  read-clipboard = pkgs.writeShellScriptBin "read-clipboard" ''
+    PIDFILE="/tmp/tts-cli-mpv.pid"
+    if [ -f "$PIDFILE" ]; then
+      kill $(cat "$PIDFILE") 2>/dev/null
+      rm -f "$PIDFILE"
+      exit 0
+    fi
+
     export OPENAI_API_KEY=$(cat /run/secrets/openai_api_key)
-    exec ${pkgs.tts-cli}/bin/tts-cli "$@"
+    ${pkgs.wl-clipboard}/bin/wl-paste | ${pkgs.tts-cli}/bin/tts-cli -o /dev/stdout | ${pkgs.mpv}/bin/mpv - &
+    MPV_PID=$!
+    echo $MPV_PID > "$PIDFILE"
+    wait $MPV_PID
+    rm -f "$PIDFILE"
   '';
 in
 {
   home.packages = [
     pkgs.hyprpolkitagent # PolKit Agent for Hyprland
     pkgs.mpv # Audio playback for tts-cli
-    tts-cli # Text to Speach
+    pkgs.tts-cli # Text to Speach
+    read-clipboard # Uses tts-cli to tts clipboard
   ];
 
   wayland.windowManager.hyprland = {
@@ -170,9 +182,8 @@ in
         "CTRL SHIFT, Space, exec, 1password --quick-access" # 1Password Quick Access
         ", Print, exec, grimblast copysave area ~/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg" # Screenshots
         "$mod, V, exec, xdg-open vicinae://extensions/vicinae/clipboard/history" # Vicinae Clipboard History
-        "$mod, R, exec, xdg-open vicinae://extensions/vicinae/system/run" # Vicinae Run
         "$mod, Y, exec, hyprvoice toggle"
-        "$mod, T, exec, sh -c 'wl-paste | tts-cli -o /dev/stdout | mpv -'"
+        "$mod, R, exec, ${read-clipboard}/bin/read-clipboard"
 
         "$mod, P, togglespecialworkspace, pass" # Toggle 1Password Workspace
 
