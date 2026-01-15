@@ -1,7 +1,7 @@
 { pkgs, settings, ... }:
 let
   read-clipboard = pkgs.writeShellScriptBin "read-clipboard" ''
-    PIDFILE="/tmp/tts-cli-mpv.pid"
+    PIDFILE="$XDG_RUNTIME_DIR/read-clipboard.pid"
     if [ -f "$PIDFILE" ]; then
       kill $(cat "$PIDFILE") 2>/dev/null
       rm -f "$PIDFILE"
@@ -182,7 +182,7 @@ in
         "CTRL SHIFT, Space, exec, 1password --quick-access" # 1Password Quick Access
         ", Print, exec, grimblast copysave area ~/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg" # Screenshots
         "$mod, V, exec, xdg-open vicinae://extensions/vicinae/clipboard/history" # Vicinae Clipboard History
-        "$mod, Y, exec, hyprvoice toggle"
+        "$mod, T, exec, hyprvoice toggle"
         "$mod, R, exec, ${read-clipboard}/bin/read-clipboard"
 
         "$mod, P, togglespecialworkspace, pass" # Toggle 1Password Workspace
