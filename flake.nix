@@ -23,6 +23,11 @@
       url = "github:MetehanYurtseven/rwpspread?ref=hyprpaper-cleanup";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    tts-cli = {
+      url = "git+file:///home/metehan.yurtseven/repos/tts-cli?ref=main&shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -33,6 +38,7 @@
       sops-nix,
       rwpspread,
       nixvim,
+      tts-cli,
       ...
     }:
     let
@@ -40,7 +46,7 @@
     in
     {
       nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit rwpspread settings; };
+        specialArgs = { inherit settings; };
         # NixOS Modules
         modules = [
           ./hosts/desktop/configuration.nix
@@ -64,6 +70,7 @@
                 kitty-scrollback-nvim = final.callPackage ./pkgs/kitty-scrollback-nvim { };
                 copilot-api = final.callPackage ./pkgs/copilot-api { };
                 rwpspread = rwpspread.packages.${final.stdenv.hostPlatform.system}.default;
+                tts-cli = tts-cli.packages.${final.stdenv.hostPlatform.system}.default;
               })
             ];
           }

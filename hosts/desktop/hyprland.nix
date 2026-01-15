@@ -2,6 +2,8 @@
 {
   home.packages = with pkgs; [
     hyprpolkitagent # PolKit Agent for Hyprland
+    tts-cli
+    mpv
   ];
 
   wayland.windowManager.hyprland = {
@@ -164,6 +166,7 @@
         "$mod, V, exec, xdg-open vicinae://extensions/vicinae/clipboard/history" # Vicinae Clipboard History
         "$mod, R, exec, xdg-open vicinae://extensions/vicinae/system/run" # Vicinae Run
         "$mod, Y, exec, hyprvoice toggle"
+        "$mod, T, exec, sh -c 'wl-paste | tts-cli -o /dev/stdout | mpv -'"
 
         "$mod, P, togglespecialworkspace, pass" # Toggle 1Password Workspace
 

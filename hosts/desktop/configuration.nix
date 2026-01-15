@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -33,6 +33,10 @@
 
     secrets."restic/repository" = { };
     secrets."restic/key" = { };
+
+    secrets."openai_api_key" = {
+      owner = "metehan.yurtseven";
+    };
   };
 
   nix.settings.experimental-features = [

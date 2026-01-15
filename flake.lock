@@ -85,7 +85,8 @@
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "rwpspread": "rwpspread",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "tts-cli": "tts-cli"
       }
     },
     "rwpspread": {
@@ -142,6 +143,28 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "tts-cli": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768428653,
+        "narHash": "sha256-niRtdDElndr3EacImFxjreW1wIbqVgwIxvd8jrz5HIs=",
+        "ref": "main",
+        "rev": "a808db6daf812b5bb3c62b280dac34de472fcc9c",
+        "shallow": true,
+        "type": "git",
+        "url": "file:///home/metehan.yurtseven/repos/tts-cli"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "file:///home/metehan.yurtseven/repos/tts-cli"
       }
     }
   },
