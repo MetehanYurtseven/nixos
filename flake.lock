@@ -152,19 +152,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1768428653,
-        "narHash": "sha256-niRtdDElndr3EacImFxjreW1wIbqVgwIxvd8jrz5HIs=",
-        "ref": "main",
-        "rev": "a808db6daf812b5bb3c62b280dac34de472fcc9c",
-        "shallow": true,
-        "type": "git",
-        "url": "file:///home/metehan.yurtseven/repos/tts-cli"
+        "lastModified": 1768556517,
+        "narHash": "sha256-nlWO9TV8VN5RjuEWb9N8vTqfbj/cJiF79T+d0fMIGYI=",
+        "owner": "MetehanYurtseven",
+        "repo": "tts-cli",
+        "rev": "593f48b4a02127a2f6c576b90476919ddf5431c5",
+        "type": "github"
       },
       "original": {
-        "ref": "main",
-        "shallow": true,
-        "type": "git",
-        "url": "file:///home/metehan.yurtseven/repos/tts-cli"
+        "owner": "MetehanYurtseven",
+        "repo": "tts-cli",
+        "type": "github"
       }
     }
   },

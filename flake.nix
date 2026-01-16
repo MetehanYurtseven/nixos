@@ -25,7 +25,7 @@
     };
 
     tts-cli = {
-      url = "git+file:///home/metehan.yurtseven/repos/tts-cli?ref=main&shallow=1";
+      url = "github:MetehanYurtseven/tts-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
