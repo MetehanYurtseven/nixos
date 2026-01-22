@@ -1,8 +1,9 @@
-{ settings, ... }:
+{ settings, pkgs, ... }:
 {
   programs.vicinae = {
     enable = true;
     systemd.enable = true;
+    package = pkgs.vicinae;
     settings = {
       search_files_in_root = false;
       font.normal.family = settings.appearance.displayFont;

@@ -28,6 +28,11 @@
       url = "github:MetehanYurtseven/tts-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    vicinae = {
+      url = "github:vicinaehq/vicinae";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -39,6 +44,7 @@
       rwpspread,
       nixvim,
       tts-cli,
+      vicinae,
       ...
     }:
     let
@@ -71,6 +77,7 @@
                 copilot-api = final.callPackage ./pkgs/copilot-api { };
                 rwpspread = rwpspread.packages.${final.stdenv.hostPlatform.system}.default;
                 tts-cli = tts-cli.packages.${final.stdenv.hostPlatform.system}.default;
+                vicinae = vicinae.packages.${final.stdenv.hostPlatform.system}.default;
               })
             ];
           }
