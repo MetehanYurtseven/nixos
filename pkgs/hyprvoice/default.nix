@@ -50,5 +50,6 @@ buildGoModule rec {
     license = lib.licenses.mit;
     platforms = lib.platforms.linux;
     mainProgram = "hyprvoice";
+    maintainers = with lib.maintainers; [ metehanyurtseven ];
   };
 }
