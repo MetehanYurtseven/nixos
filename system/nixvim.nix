@@ -1,25 +1,4 @@
 { pkgs, ... }:
-
-let
-  # WORKAROUND: Skip build-time require checks for nvim-treesitter-textobjects
-  #
-  # The nixpkgs neovim-require-check runs during build in an isolated environment
-  # where nvim-treesitter is not yet available, causing the check to fail.
-  # This is a known issue with treesitter plugins that have runtime dependencies.
-  #
-  # The plugin works perfectly at runtime when nvim-treesitter is loaded.
-  #
-  # TODO: Remove this workaround once nixpkgs fixes the dependency resolution
-  # Related issues:
-  # - https://github.com/NixOS/nixpkgs/issues/282927
-  # - https://github.com/NixOS/nixpkgs/issues/318925
-  # - https://nixos.org/manual/nixpkgs/unstable/#testing-neovim-plugins-neovim-require-check
-  nvim-treesitter-textobjects-fixed =
-    pkgs.vimPlugins.nvim-treesitter-textobjects.overrideAttrs
-      (old: {
-        doCheck = false;
-      });
-in
 {
   environment.systemPackages = with pkgs; [
     nvimpager
@@ -117,7 +96,6 @@ in
 
       treesitter-textobjects = {
         enable = true;
-        package = nvim-treesitter-textobjects-fixed;
 
         settings = {
           select = {
