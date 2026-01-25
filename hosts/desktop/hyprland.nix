@@ -241,6 +241,11 @@ in
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
       ];
+      
+      device = {
+        name = "sony-computer-entertainment-wireless-controller-touchpad";
+        enabled = false;
+      };
 
       bindel = [
         ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
